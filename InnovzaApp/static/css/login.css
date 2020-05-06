@@ -1,0 +1,32 @@
+.login{
+	background: -webkit-linear-gradient(left, #3931af, #00c6ff);
+	margin-top:3%;
+	padding:3%;
+}
+.login-left{
+    text-align: center;
+    color: white;
+    margin-top: 4%;
+}
+.login-right{
+    background: #f8f9fa;
+    border-top-left-radius: 10% 50%;
+    border-bottom-left-radius: 10% 50%;
+}
+.login .login-form{
+    padding: 10%;
+    margin-top: 10%;
+}
+.login .row .loginr-left h2{
+	 -webkit-animation: fadein 8s;
+}
+@-webkit-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+.login .row .login-left q{
+	 -webkit-animation: fadein 8s;
+}
+.login .row .login-left i{
+	 -webkit-animation: fadein 8s;
+}

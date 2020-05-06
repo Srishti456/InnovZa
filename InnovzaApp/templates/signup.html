@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container register">
+	 	<div class="row">
+	 		<div class="col-md-3 register-left">
+	 			<h2> Welcome </h2>
+	 			<q>The only way to discover the limits of the possible is to go beyond them into the impossible.</q>
+	 			<br>
+	 			<i class="material-icons" style="font-size:48px;color:white">person</i>
+	 		</div>
+	 		<div class="col-md-9 register-right">
+                <div class="row register-form">
+                	<h3 class="register-heading">Begin Your Journey By Registering !!</h3>
+                    <form action="/register" method="post" class="agile_form" >
+                        {% csrf_token %}
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="full_name" placeholder="Full Name *" value="" />
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="username" placeholder="User Name *" value="" />
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control" name="password" placeholder="Password *" value="" />
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <input type="email" class="form-control" name="email" placeholder="Your Email *" value="" />
+                            </div>
+                            <div class="form-group" >
+                                <input type="text" maxlength="10" name="phoneno" class="form-control" placeholder="Your Phone *" value=""  />
+                            </div>
+                            <div class="form-group">
+                                <select class="form-control" name="gender">
+                                    <option class="hidden"  selected disabled>Please select your Gender</option>
+                                    <option value="M">Male</option>
+                                    <option value="F">Female</option>
+                                    <option value="O">Others</option>
+                                </select>
+                            </div>
+                        </div><br>
+                        <center><button type="submit" class="btn btn-primary">SignUp With InnoVza</button></center><br>
+                        <center><h5>Already Registered !!!&nbsp <a href="{% url 'signin' %}">LogIn</a> &nbsp from here....</h5></center>
+                    </form>
+            	</div>
+            </div>
+	 	</div>
+	</div>
+<br><br>
+{% endblock content %}

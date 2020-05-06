@@ -1,0 +1,134 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <section style="background: url({% static 'img/slide-2.jpg' %}); background-size: cover; background-position: center center" class="hero">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-7">
+            <h1 style="color:MediumBlue;">InnoVza - Where Innovation start with a contribution </h1><a href="#" class="hero-link"><h6 style="color:MediumBlue;">Discover More</h6></a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Intro Section-->
+    <section class="intro no-padding-bottom">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8">
+            <h2 class="h3">Introduction</h2>
+            <p class="text-big">Place where <strong>your innovation and interest</strong> can help you to explore and help you to earn from your projects . Moreover you can also Create Blogs , Upload the video of your projects and you can also sell the projects and the products like raspberry pi,sensors, arduino.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="featured-posts">
+       <div class="container">
+          <div class="row d-flex align-items-stretch">
+            <div class="col-md-12">
+              <center><h1 style="color: blue;font-family:Courier New;font-size: 36px;"> <b>OUR INTERESTED FIELDS</b> </h1></center>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="card" style=" margin-left: 5px; box-shadow: 10px 10px 5px grey; margin-top: 40px; height:320px;"  data-aos="fade-right">
+                <img src="{% static 'img/raspberry.png' %}" style="height:320px;">
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card" style=" margin-left: 5px; box-shadow: 10px 10px 5px grey; margin-top: 40px; height:320px;"  data-aos="fade-right" data-aos-delay="300">
+                <img src="{% static 'img/arduino1.jpg' %}" style="height:320px;">
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card" style=" margin-left: 5px; box-shadow: 10px 10px 5px grey; margin-top: 40px; height:320px;"  data-aos="fade-right" data-aos-delay="300">
+                <img src="{% static 'img/robotic.jpg' %}"  style="height:320px;">
+              </div>
+            </div>
+          </div>
+       </div>
+    </section>
+   <section style="background: url({% static 'img/blog.png' %}); background-size: cover; background-position: center bottom" class="divider">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <h2 style="color:GreenYellow"> Want to Become Blogger with Us ? Click on View More and start posting your blogs </h2><a href="{% url 'signup' %}" class="hero-link"><h5 style="color:GreenYellow">View More</h5></a>
+          </div>
+        </div>
+      </div>
+    </section>
+  <section class="latest-posts">
+      <div class="container">
+        <header>
+          <h2>Latest from the blog</h2>
+          <p class="text-big">Latest Blog uploaded by the users </p>
+        </header>
+        <div class="row">
+          {% for obj in latest %}
+          <div class="post col-md-4">
+            <div class="post-thumbnail"><a href="post.html">
+              <img src="{{ obj.thumbnail.url }}" alt="..." class="img-fluid"></a></div>
+            <div class="post-details">
+              <div class="post-meta d-flex justify-content-between">
+                <div class="date">{{ obj.timestamp |timesince }}</div>
+                <div class="category">
+                  {% for cat in obj.categories.all %}
+                  <a href="#">{{ cat }}</a>
+                  {% endfor %}
+                </div>
+              </div><a href="{{ obj.get_absolute_url }}">
+                <h3 class="h4">{{obj.title  }}</h3></a>
+              <p class="text-muted">{{ obj.overview }}</p>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+    <section style="background: url({% static 'img/gallery-1.jpg' %}); background-size: cover; background-position: center bottom" class="divider">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <h2 style="color:white"> Want to Upload Your Projects and Earn ? Click on View More and start uploading projects </h2><a href="{% url 'signup' %}" class="hero-link"><h5 style="color:white">View More</h5></a>
+          </div>
+        </div>
+      </div>
+    </section>
+      <section class="latest-projects">
+          <div class="container">
+            <header>
+              <h2>Latest from the Projects</h2>
+              <p class="text-big">Latest Projects uploaded by the users </p>
+            </header>
+            <div class="row">
+              {% for obj in latest1 %}
+          <div class="post col-md-4">
+            <div class="post-thumbnail"><a href="post.html">
+               <a href="{{ obj.get_absolute_url }}"><video width="320" height="240" controls><source src="{{ obj.project_video.url }}" type=video/mp4></video></a></div>
+            <div class="post-details">
+              <div class="post-meta d-flex justify-content-between">
+                <div class="date">{{ obj.timestamp |timesince }}</div>
+                <div class="category">
+                  {% for cat in obj.categories.all %}
+                  <a href="#">{{ cat }}</a>
+                  {% endfor %}
+                </div>
+              </div><a href="{{ obj.get_absolute_url }}">
+                <h3 class="h4">{{obj.title  }}</h3></a>
+              <p class="text-muted">{{ obj.overview }}</p>
+            </div>
+          </div>
+          {% endfor %}
+            </div>
+          </div>
+    </section>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
+  <script>
+  	setTimeout(function(){
+  		$('.loader_bg').fadeToggle();
+  	},1500);
+  </script>
+{% endblock content %}

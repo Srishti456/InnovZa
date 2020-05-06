@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<section id="form">
+	<div class="container py-4">
+		<div class="form-sub py-4" style="width: 60%;margin: 0 auto;background: url({% static 'img/back.jpeg' %}) no-repeat;background-size: cover;">
+			<h3 class="text-center text-uppercase">Create Your Post</h3>
+			<form class="px-4 form-group" method="post" action="/post_update" enctype="multipart/form-data">
+				{% csrf_token %}
+				<label for="usr">Title:<sup>*</sup></label>
+				<input type="text" name="title" placeholder="Enter Title" id="usr" class="form-control form-control" value="" required>
+				<label class="mt-2">Overview:<sup>*</sup></label>
+				<input type="text" name="overview" placeholder="Enter Overview" class="form-control form-control" value="" required />
+				<label for="cat" class=" mt-2">Category <sup>*</sup></label>
+				<select class="form-control" id="cat" name="category">
+				    <option value="Ardiuno">Ardiuno</option>
+				    <option value="RaspberryPi">Rasperry PI</option>
+				    <option value="Robotics">Robotics</option>
+				</select>
+				<label for="thumb" class="mt-2" class="form-control form-control">Thumbnails <sup>*</sup></label>
+				<input type="file" class="form-control-file border" id="thumb" name="thumbnail"><br>
+				<label for="full-featured-non-premium" class="mt-2" class="form-control form-control">Content <sup>*</sup></label>
+                <textarea style="width:100%" id="full-featured-non-premium" name="content">Welcome to TinyMCE!</textarea>
+				<div class="text-right">
+					<button class="my-3 btn submit"><span>Create</span></button>
+				</div>
+			</form>
+		</div>
+	</div>
+</section>
+
+{% endblock content %}

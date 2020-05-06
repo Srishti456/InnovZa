@@ -1,0 +1,32 @@
+.register{
+	background: -webkit-linear-gradient(left, #3931af, #00c6ff);
+	margin-top:3%;
+	padding:3%;
+}
+.register-left{
+    text-align: center;
+    color: white;
+    margin-top: 4%;
+}
+.register-right{
+    background: #f8f9fa;
+    border-top-left-radius: 10% 50%;
+    border-bottom-left-radius: 10% 50%;
+}
+.register .register-form{
+    padding: 10%;
+    margin-top: 10%;
+}
+.register .row .register-left h2{
+	 -webkit-animation: fadein 8s;
+}
+@-webkit-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+.register .row .register-left q{
+	 -webkit-animation: fadein 8s;
+}
+.register .row .register-left i{
+	 -webkit-animation: fadein 8s;
+}

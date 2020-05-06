@@ -1,0 +1,38 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+	 <div class="container login">
+	 	<div class="row">
+	 		<div class="col-md-3 login-left">
+	 			<h2> Welcome </h2>
+	 			<q>The only way to discover the limits of the possible is to go beyond them into the impossible.</q>
+	 			<br>
+	 			<i class="material-icons" style="font-size:48px;color:white">person</i>
+	 		</div>
+	 		<div class="col-md-9 login-right">
+                <div class="row login-form">
+                	<h3 class="login-heading">LogIn Into The World of INNOVATION!!</h3><br>
+					<form action="/signin" method="post" class="agile_form">
+						{% csrf_token %}
+						<div class="col-md-12">
+							<div class="form-group">
+								<input type="text" class="form-control" placeholder="User Name *"  name="username" value="" />
+							</div><br>
+							<div class="form-group">
+								<input type="password" class="form-control" placeholder="Password *" name="password" value="" />
+							</div> <br>
+							<div class="form-group">
+								<button type="submit" class="btn btn-primary">LogIn With InnoVza</button>
+							</div>
+							<div class="form-group">
+								 <h5> Forget Your Password ???  <a href="#">Reset</a></h5>
+							</div>
+						</div>
+					</form>
+            	</div>
+            </div>
+	 	</div>
+	</div><br><br>
+
+{% endblock content %}

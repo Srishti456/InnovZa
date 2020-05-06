@@ -1,0 +1,138 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+  <body>
+    <div class="container">
+      <div class="row">
+        <!-- Latest Posts -->
+        <main class="post blog-post col-lg-8">
+          <div class="container">
+            <div class="post-single">
+              <div class="post-details">
+                <h1>{{ project.title }}</h1>
+                <div class="post-meta d-flex justify-content-between">
+                  <div class="category">
+                     {% for cat in project.categories.all %}
+                    <a href="#">{{ cat }}</a>
+                  {% endfor %}
+                  </div>
+                </div>
+                <div class="post-footer d-flex align-items-center flex-column flex-sm-row"><a href="#" class="author d-flex align-items-center flex-wrap">
+                    <div class="avatar"><img src="{{ project.author.profile_pic.url }}" alt="..." class="img-fluid"></div>
+                    <div class="title"><span>{{ project.author.user.username }}</span></div></a>
+                  <div class="d-flex align-items-center flex-wrap">
+                    <div class="date"><i class="icon-clock"></i>{{ project.timestamp | timesince }}ago</div>
+                    <div class="views"><i class="icon-eye"></i>{{project.view_count }}</div>
+                    <div class="comments meta-last"><i class="icon-comment"></i>{{ project.comment_count}}</div>
+                  </div>
+                </div>
+                <div class="post-body">
+                  <div class="row">
+                    <h4>DESCRIPTION OF THE PROJECT</h4>
+                    {{project.description}}
+                  </div><br>
+                    {{ project.requirement |safe }}
+                  <br>
+                  <div class="row">
+                    <h5>PROJECT VIDEO</h5>
+                      <video width="600" height="400" controls><source src="{{ project.project_video.url }}" type=video/mp4></video>
+                  </div><br><br>
+                  <div class="row">
+                    <h4>REFRENCE CODE</h4>
+                  </div><br><br>
+                  <div class="row">
+                    {% if request.user.is_authenticated %}
+                    <a href="{{ project.code_file.url }} " download> Download Code</a>
+                    {% else %}
+                    <h5>To download Code of this Project!!!&nbsp <a href="{% url 'signin' %}">LogIn</a> &nbsp from here....</h5>
+                    {% endif %}
+                  </div>
+                </div>
+                <div class="post-comments">
+                  <header>
+                    <h3 class="h6">Post Comments<span class="no-of-comments">({{project.get_comment.count}})</span></h3>
+                  </header>
+                  {% for comment in project.get_comment %}
+                  <div class="comment">
+                    <div class="comment-header d-flex justify-content-between">
+                      <div class="user d-flex align-items-center">
+                        <div class="image"><img src="{{ comment.user.profile_pic.url }}" alt="..." class="img-fluid rounded-circle"></div>
+                        <div class="title"><strong>{{ comment.user.username }}</strong><span class="date">{{ comment.timestamp |timesince }}ago</span></div>
+                      </div>
+                    </div>
+                    <div class="comment-body">
+                      <p>{{ comment.content }}</p>
+                    </div>
+                  </div>
+                  {% endfor %}
+                </div>
+                <div class="add-comment">
+                  {% if request.user.is_authenticated %}
+                  <header>
+                    <h3 class="h6">Leave a reply</h3>
+                  </header>
+                  <form action="." method="post" class="commenting-form">
+                    {% csrf_token %}
+                    <div class="row">
+                      <div class="form-group col-md-12">
+                        {{ form }}
+                      </div>
+                      <div class="form-group col-md-12">
+                        <button type="submit" class="btn btn-secondary">Submit Comment</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </main>
+        <aside class="col-lg-4">
+          <!-- Widget [Search Bar Widget]-->
+          <div class="widget search">
+            <header>
+              <h3 class="h6">Search the blog</h3>
+            </header>
+            <form action="#" class="search-form">
+              <div class="form-group">
+                <input type="search" placeholder="What are you looking for?">
+                <button type="submit" class="submit"><i class="icon-search"></i></button>
+              </div>
+            </form>
+          </div>
+          <!-- Widget [Latest Posts Widget]        -->
+            <div class="widget latest-posts">
+              <header>
+                <h3 class="h6">Latest Posts</h3>
+              </header>
+              <div class="blog-posts">
+              {% for project in most_recent %}
+              <a href="{{ project.get_absolute_url }}">
+                <div class="item d-flex align-items-center">
+                  <div class="image"><video width="60" height="60" controls><source src="{{ project.project_video.url }}" type=video/mp4></video></div>
+                  <div class="title"><strong>{{ project.title }}</strong>
+                    <div class="d-flex align-items-center">
+                      <div class="views"><i class="icon-eye"></i>{{project.view_count }}</div>
+                      <div class="comments"><i class="icon-comment"></i>{{ project.comment_count }}</div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+              {% endfor %}
+            </div>
+          <!-- Widget [Categories Widget]-->
+          <div class="widget categories">
+            <header>
+              <h3 class="h6">Categories</h3>
+            </header>
+            {% for cat in category_count %}
+            <div class="item d-flex justify-content-between"><a href="#">{{ cat.categories__title }}</a><span>{{ cat.categories__title__count }}</span></div>
+            {% endfor %}
+          </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+
+{% endblock content %}

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>InnoVza</title>
+	<style type="text/css">
+		.pin {
+    width: 38%;
+    height: 40vh;
+    border: 3px solid #aeb5b0;
+    margin-left: 349px;
+   
+}
+		.ot {
+    width: 95%;
+    height: 35vh;
+    border: 1px solid #c2c4c3;
+    text-align: center;
+    margin-left: 12px;
+    margin-top: 15px;
+}
+</style>
+</head>
+<body>
+<div class="pin">
+          <div class="ot">
+	           <h2>OTP is sent to your email number</h2>
+	           <form action="/verifyotp" method="post">
+				   {% csrf_token %}
+		            <input type="text" name="otp"  value="" maxlength="6" style="width: 300px;height: 5vh;" ><br>
+				    <button type="submit" style="width: 300px;height: 5vh;background-color: #f8f9fa;text-align: center;margin-top: 40px;">Verify</button>
+	           </form>
+         </div>
+</div>
+</body>
+</html>
