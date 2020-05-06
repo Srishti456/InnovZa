@@ -3,9 +3,10 @@ from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.paginator import PageNotAnInteger, Paginator, EmptyPage
 from django.shortcuts import render, redirect, get_object_or_404,reverse
-from .forms import UserDataForm,UserForm,CommentForm,ProjectCommentForm
+from .forms import UserDataForm,CommentForm,ProjectCommentForm
 from django.contrib.auth import authenticate, login,logout
 from django.http import HttpResponse
+from django.contrib.auth.hashers import make_password
 import yagmail
 import os
 import pyotp
@@ -43,8 +44,7 @@ def register(request):
         request.session.pop('t', None)
         request.session.pop('userdata', None)
         userDataForm = UserDataForm(request.POST)
-        userForm = UserForm(request.POST)
-        if userDataForm.is_valid and userForm.is_valid():
+        if userDataForm.is_valid:
             request.session['userdata'] = request.POST
             secret_key = pyotp.random_base32()
             request.session['key'] = secret_key
@@ -66,10 +66,11 @@ def verifyotp(request):
         data = request.session.get('userdata')
         if otp==totp1.now() :
             #print("Hello")
+            print(data)
             userDataForm = UserDataForm(data)
-            userForm = UserForm(data)
+            user=User.objects.create_user(data['username'],data['email'],data['password'])
             userDataForm.save()
-            userForm.save()
+            user.save()
             return redirect('signin')
         else:
             #message
@@ -88,9 +89,12 @@ def signin(request):
 
 def userpage(request):
     user = UserInfo.objects.get(username=request.user)
-    post_num = Post.objects.filter(author=UserInfo.objects.get(username=request.user)).count()
-    project_num = Project.objects.filter(author=UserInfo.objects.get(username=request.user)).count()
-    return render(request, 'user.html', {'user': user, 'post_num': post_num, 'project_num': project_num, })
+    if user.profile_pic :
+        post_num = Post.objects.filter(author=UserInfo.objects.get(username=request.user)).count()
+        project_num = Project.objects.filter(author=UserInfo.objects.get(username=request.user)).count()
+        return render(request, 'user.html', {'user': user, 'post_num': post_num, 'project_num': project_num, })
+    else:
+        return redirect('profile_photo')
 
 def userBlog(request):
     post_list = Post.objects.filter(author=UserInfo.objects.get(username=request.user)).all()
@@ -114,6 +118,7 @@ def profile_photo(request):
             user_info = UserInfo.objects.get(username=request.user.username)
             user_info.profile_pic = request.FILES['profile_pic']
             user_info.save()
+            return redirect('userpage')
         except Exception as e:
             print(e)
     return render(request, 'profile_picture.html',{})

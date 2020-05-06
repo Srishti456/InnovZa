@@ -5,11 +5,6 @@ from django.http import request
 from tinymce import TinyMCE
 from .models import UserInfo,Post,Comment,ProjectComment
 
-class UserForm(forms.ModelForm):
-    class Meta:
-        model=User
-        fields=('username','password','email',)
-
 class UserDataForm(forms.ModelForm):
     class Meta:
         model=UserInfo

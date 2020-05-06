@@ -8,7 +8,7 @@ from django.urls import reverse
 
 class UserInfo(models.Model):
     full_name=models.CharField(max_length=30)
-    username=models.CharField(max_length=30)
+    username=models.CharField(max_length=30,unique=True)
     phoneno=models.CharField(max_length=10)
     gender=models.CharField(max_length=1)
     profile_pic = models.ImageField(upload_to='profile/', null=True, blank=True)
