@@ -1,134 +1,682 @@
-{% extends 'base.html' %}
 {% load static %}
-{% block content %}
-    <section style="background: url({% static 'img/slide-2.jpg' %}); background-size: cover; background-position: center center" class="hero">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-7">
-            <h1 style="color:MediumBlue;">InnoVza - Where Innovation start with a contribution </h1><a href="#" class="hero-link"><h6 style="color:MediumBlue;">Discover More</h6></a>
-          </div>
-        </div>
+<html>
+<head>
+	<title>Home | Innovza</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/swiper.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+	<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+	 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.11/js/mdb.min.js"></script>
+	 <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.11/css/mdb.min.css" rel="stylesheet">
+    <link href="https://mdbootstrap.com/wp-content/themes/mdbootstrap4/css/compiled-4.5.11.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/landing.css' %}">
+	<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<script type="text/javascript" src="{% static 'js/isotope.min.js' %}"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.1/TweenMax.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
+<body onload="fadeOut()">
+  <div class="contain">
+    <div class="over">
+      <p class="screen">INNOVZA</p>
+      <div class="intro">
       </div>
-    </section>
-    <!-- Intro Section-->
-    <section class="intro no-padding-bottom">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-8">
-            <h2 class="h3">Introduction</h2>
-            <p class="text-big">Place where <strong>your innovation and interest</strong> can help you to explore and help you to earn from your projects . Moreover you can also Create Blogs , Upload the video of your projects and you can also sell the projects and the products like raspberry pi,sensors, arduino.</p>
-          </div>
-        </div>
+    </div>
+    <div class="over2">
+        <button id="mybtn">Loading</button>
       </div>
-    </section>
-    <section class="featured-posts">
-       <div class="container">
-          <div class="row d-flex align-items-stretch">
-            <div class="col-md-12">
-              <center><h1 style="color: blue;font-family:Courier New;font-size: 36px;"> <b>OUR INTERESTED FIELDS</b> </h1></center>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-4">
-              <div class="card" style=" margin-left: 5px; box-shadow: 10px 10px 5px grey; margin-top: 40px; height:320px;"  data-aos="fade-right">
-                <img src="{% static 'img/raspberry.png' %}" style="height:320px;">
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="card" style=" margin-left: 5px; box-shadow: 10px 10px 5px grey; margin-top: 40px; height:320px;"  data-aos="fade-right" data-aos-delay="300">
-                <img src="{% static 'img/arduino1.jpg' %}" style="height:320px;">
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="card" style=" margin-left: 5px; box-shadow: 10px 10px 5px grey; margin-top: 40px; height:320px;"  data-aos="fade-right" data-aos-delay="300">
-                <img src="{% static 'img/robotic.jpg' %}"  style="height:320px;">
-              </div>
-            </div>
-          </div>
-       </div>
-    </section>
-   <section style="background: url({% static 'img/blog.png' %}); background-size: cover; background-position: center bottom" class="divider">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <h2 style="color:GreenYellow"> Want to Become Blogger with Us ? Click on View More and start posting your blogs </h2><a href="{% url 'signup' %}" class="hero-link"><h5 style="color:GreenYellow">View More</h5></a>
-          </div>
-        </div>
-      </div>
-    </section>
-  <section class="latest-posts">
-      <div class="container">
-        <header>
-          <h2>Latest from the blog</h2>
-          <p class="text-big">Latest Blog uploaded by the users </p>
-        </header>
-        <div class="row">
-          {% for obj in latest %}
-          <div class="post col-md-4">
-            <div class="post-thumbnail"><a href="post.html">
-              <img src="{{ obj.thumbnail.url }}" alt="..." class="img-fluid"></a></div>
-            <div class="post-details">
-              <div class="post-meta d-flex justify-content-between">
-                <div class="date">{{ obj.timestamp |timesince }}</div>
-                <div class="category">
-                  {% for cat in obj.categories.all %}
-                  <a href="#">{{ cat }}</a>
-                  {% endfor %}
-                </div>
-              </div><a href="{{ obj.get_absolute_url }}">
-                <h3 class="h4">{{obj.title  }}</h3></a>
-              <p class="text-muted">{{ obj.overview }}</p>
-            </div>
-          </div>
-          {% endfor %}
-        </div>
-      </div>
-    </section>
-    <section style="background: url({% static 'img/gallery-1.jpg' %}); background-size: cover; background-position: center bottom" class="divider">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <h2 style="color:white"> Want to Upload Your Projects and Earn ? Click on View More and start uploading projects </h2><a href="{% url 'signup' %}" class="hero-link"><h5 style="color:white">View More</h5></a>
-          </div>
-        </div>
-      </div>
-    </section>
-      <section class="latest-projects">
-          <div class="container">
-            <header>
-              <h2>Latest from the Projects</h2>
-              <p class="text-big">Latest Projects uploaded by the users </p>
-            </header>
-            <div class="row">
-              {% for obj in latest1 %}
-          <div class="post col-md-4">
-            <div class="post-thumbnail"><a href="post.html">
-               <a href="{{ obj.get_absolute_url }}"><video width="320" height="240" controls><source src="{{ obj.project_video.url }}" type=video/mp4></video></a></div>
-            <div class="post-details">
-              <div class="post-meta d-flex justify-content-between">
-                <div class="date">{{ obj.timestamp |timesince }}</div>
-                <div class="category">
-                  {% for cat in obj.categories.all %}
-                  <a href="#">{{ cat }}</a>
-                  {% endfor %}
-                </div>
-              </div><a href="{{ obj.get_absolute_url }}">
-                <h3 class="h4">{{obj.title  }}</h3></a>
-              <p class="text-muted">{{ obj.overview }}</p>
-            </div>
-          </div>
-          {% endfor %}
-            </div>
-          </div>
-    </section>
-<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  </div>
   <script>
-    AOS.init();
+    function fadeOut()
+    {
+      TweenMax.to('#mybtn', 2, {
+        y: 50,
+        opacity: 0,
+        ease: Power2.easeInOut,
+        delay:1
+      });
+      TweenMax.to('.contain', 3, {
+        display : 'none',
+        ease: Power2.easeInOut,
+        delay:1
+      });
+      TweenMax.to('.screen', 2,{
+        y:-100,
+        opacity: 0,
+        ease: Power2.easeInOut,
+        delay:2
+      });
+      TweenMax.to('.over', 2,{
+        delay: 3.5,
+        top: "-50%",
+        display: 'none',
+        ease: Expo.easeInOut
+      });
+
+      TweenMax.to('.over2', 2,{
+        delay: 3.5,
+        top: "100%",
+        display: 'none',
+        ease: Expo.easeInOut
+      });
+      TweenMax.to('.contain', 4, {
+        display : 'none',
+        ease: Power2.easeInOut,
+        delay:1
+      });
+    }
   </script>
+<script type="text/javascript" src="{% static 'js/queryloader2.min.js' %}"></script>
+<script type="text/javascript">
+    window.addEventListener('DOMContentLoaded', function() {
+        QueryLoader2(document.querySelector("body"), {
+            barColor: "#efefef",
+            backgroundColor: "#111",
+            barHeight: 1,
+            minimumTime: 2000,
+            fadeOutTime: 1000
+        });
+    });
+</script>
+	<nav class="navbar navbar-expand-md">
+  <!-- Brand -->
+  <a class="navbar-brand" href="#">Innovza</a>
+
+  <!-- Toggler/collapsibe Button -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <i class="fas fa-bars"></i>
+  </button>
+
+  <!-- Navbar links -->
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+  	<div class="mr-auto"></div>
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="/">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/blog">Blogs</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/projectinfo">Projects</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/signin">Login</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div class="slider-container">
+  <div class="slider-control left inactive"></div>
+  <div class="slider-control right"></div>
+  <ul class="slider-pagi"></ul>
+  <div class="slider">
+    <div class="slide slide-0 active">
+      <div class="slide__bg" style="background-image:url({% static 'img/slider1.jpg' %});"></div>
+      <div class="slide__content">
+        <svg class="slide__overlay" viewBox="0 0 720 405" preserveAspectRatio="xMaxYMax slice">
+          <path class="slide__overlay-path" d="M0,0 150,0 500,405 0,405" />
+        </svg>
+        <div class="slide__text">
+          <h2 class="slide__text-heading">Project name 1</h2>
+          <p class="slide__text-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio veniam minus illo debitis nihil animi facere, doloremque voluptate tempore quia. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio veniam minus illo debitis nihil animi facere, doloremque voluptate tempore quia.</p>
+          <a class="slide__text-link">Project link</a>
+        </div>
+      </div>
+    </div>
+    <div class="slide slide-1 ">
+      <div class="slide__bg" style="background-image:url({% static 'img/slider2.jpg' %});"></div>
+      <div class="slide__content">
+        <svg class="slide__overlay" viewBox="0 0 720 405" preserveAspectRatio="xMaxYMax slice">
+          <path class="slide__overlay-path" d="M0,0 150,0 500,405 0,405" />
+        </svg>
+        <div class="slide__text">
+          <h2 class="slide__text-heading">Project name 2</h2>
+          <p class="slide__text-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio veniam minus illo debitis nihil animi facere, doloremque voluptate tempore quia. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio veniam minus illo debitis nihil animi facere, doloremque voluptate tempore quia.</p>
+          <a class="slide__text-link">Project link</a>
+        </div>
+      </div>
+    </div>
+    <div class="slide slide-2">
+      <div class="slide__bg" style="background-image:url({% static 'img/slider3.jpg' %});"></div>
+      <div class="slide__content">
+        <svg class="slide__overlay" viewBox="0 0 720 405" preserveAspectRatio="xMaxYMax slice">
+          <path class="slide__overlay-path" d="M0,0 150,0 500,405 0,405" />
+        </svg>
+        <div class="slide__text">
+          <h2 class="slide__text-heading">Project name 3</h2>
+          <p class="slide__text-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio veniam minus illo debitis nihil animi facere, doloremque voluptate tempore quia. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio veniam minus illo debitis nihil animi facere, doloremque voluptate tempore quia.</p>
+          <a class="slide__text-link">Project link</a>
+        </div>
+      </div>
+    </div>
+    <div class="slide slide-3">
+      <div class="slide__bg" style="background-image:url({% static 'img/slider4.jpg' %});"></div>
+      <div class="slide__content">
+        <svg class="slide__overlay" viewBox="0 0 720 405" preserveAspectRatio="xMaxYMax slice">
+          <path class="slide__overlay-path" d="M0,0 150,0 500,405 0,405" />
+        </svg>
+        <div class="slide__text">
+          <h2 class="slide__text-heading">Project name 4</h2>
+          <p class="slide__text-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio veniam minus illo debitis nihil animi facere, doloremque voluptate tempore quia. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio veniam minus illo debitis nihil animi facere, doloremque voluptate tempore quia.</p>
+          <a class="slide__text-link">Project link</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+	$(document).ready(function() {
+
+  var $slider = $(".slider"),
+      $slideBGs = $(".slide__bg"),
+      diff = 0,
+      curSlide = 0,
+      numOfSlides = $(".slide").length-1,
+      animating = false,
+      animTime = 500,
+      autoSlideTimeout,
+      autoSlideDelay = 6000,
+      $pagination = $(".slider-pagi");
+
+  function createBullets() {
+    for (var i = 0; i < numOfSlides+1; i++) {
+      var $li = $("<li class='slider-pagi__elem'></li>");
+      $li.addClass("slider-pagi__elem-"+i).data("page", i);
+      if (!i) $li.addClass("active");
+      $pagination.append($li);
+    }
+  };
+
+  createBullets();
+
+  function manageControls() {
+    $(".slider-control").removeClass("inactive");
+    if (!curSlide) $(".slider-control.left").addClass("inactive");
+    if (curSlide === numOfSlides) $(".slider-control.right").addClass("inactive");
+  };
+
+  function autoSlide() {
+    autoSlideTimeout = setTimeout(function() {
+      curSlide++;
+      if (curSlide > numOfSlides) curSlide = 0;
+      changeSlides();
+    }, autoSlideDelay);
+  };
+
+  autoSlide();
+
+  function changeSlides(instant) {
+    if (!instant) {
+      animating = true;
+      manageControls();
+      $slider.addClass("animating");
+      $slider.css("top");
+      $(".slide").removeClass("active");
+      $(".slide-"+curSlide).addClass("active");
+      setTimeout(function() {
+        $slider.removeClass("animating");
+        animating = false;
+      }, animTime);
+    }
+    window.clearTimeout(autoSlideTimeout);
+    $(".slider-pagi__elem").removeClass("active");
+    $(".slider-pagi__elem-"+curSlide).addClass("active");
+    $slider.css("transform", "translate3d("+ -curSlide*100 +"%,0,0)");
+    $slideBGs.css("transform", "translate3d("+ curSlide*50 +"%,0,0)");
+    diff = 0;
+    autoSlide();
+  }
+
+  function navigateLeft() {
+    if (animating) return;
+    if (curSlide > 0) curSlide--;
+    changeSlides();
+  }
+
+  function navigateRight() {
+    if (animating) return;
+    if (curSlide < numOfSlides) curSlide++;
+    changeSlides();
+  }
+
+  $(document).on("mousedown touchstart", ".slider", function(e) {
+    if (animating) return;
+    window.clearTimeout(autoSlideTimeout);
+    var startX = e.pageX || e.originalEvent.touches[0].pageX,
+        winW = $(window).width();
+    diff = 0;
+
+    $(document).on("mousemove touchmove", function(e) {
+      var x = e.pageX || e.originalEvent.touches[0].pageX;
+      diff = (startX - x) / winW * 70;
+      if ((!curSlide && diff < 0) || (curSlide === numOfSlides && diff > 0)) diff /= 2;
+      $slider.css("transform", "translate3d("+ (-curSlide*100 - diff) +"%,0,0)");
+      $slideBGs.css("transform", "translate3d("+ (curSlide*50 + diff/2) +"%,0,0)");
+    });
+  });
+
+  $(document).on("mouseup touchend", function(e) {
+    $(document).off("mousemove touchmove");
+    if (animating) return;
+    if (!diff) {
+      changeSlides(true);
+      return;
+    }
+    if (diff > -8 && diff < 8) {
+      changeSlides();
+      return;
+    }
+    if (diff <= -8) {
+      navigateLeft();
+    }
+    if (diff >= 8) {
+      navigateRight();
+    }
+  });
+
+  $(document).on("click", ".slider-control", function() {
+    if ($(this).hasClass("left")) {
+      navigateLeft();
+    } else {
+      navigateRight();
+    }
+  });
+
+  $(document).on("click", ".slider-pagi__elem", function() {
+    curSlide = $(this).data("page");
+    changeSlides();
+  });
+
+});
+</script>
+<section id="about">
+<div class="container-fluid p-0">
+	<div class="parallax py-3">
+		<h1 class="ml10">
+		  <span class="text-wrapper">
+		    <span class="letters text-center text-uppercase">Let me Introduce</span>
+		  </span>
+		</h1>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+<script type="text/javascript">
+	var textWrapper = document.querySelector('.ml10 .letters');
+textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+
+anime.timeline({loop: true})
+  .add({
+    targets: '.ml10 .letter',
+    rotateY: [-90, 0],
+    duration: 1300,
+    delay: (el, i) => 45 * i
+  }).add({
+    targets: '.ml10',
+    opacity: 0,
+    duration: 1000,
+    easing: "easeOutExpo",
+    delay: 1000
+  });
+</script>
+		<div class="row p-0 m-0 about-grid">
+			<div class="col-md-6">
+				<img src="{% static 'img/project.svg' %}">
+			</div>
+			<div class="col-md-6 info"data-aos="zoom-in">
+				<div class="data">
+					<h1>Introduction</h1>
+					<p>Place where your innovation and interest can help you to explore and help you to earn from your projects . Moreover you can also Create Blogs , Upload the video of your projects and you can also sell the projects and the products like raspberry pi,sensors, arduino.</p>
+				<button class="read  btn">Read More</button>
+				</div>
+			</div>
+		</div>
+</div>
+</div>
+</section>
+<script>
+  AOS.init();
+</script>
+<section id="banner">
+	<div class="container-fluid p-0 m-0">
+		<div class="banner-sub" style="background-image:url({% static 'img/lap.jpg' %});">
+			<div class="info" >
+				<h1 data-aos="fade-up" data-aos-duration="1000">Want to Become Blogger with Us ? Click on View More and start posting your blogs.</h1>
+				<button class="read" data-aos="fade-up" data-aos-duration="1000">View More</button>
+			</div>
+		</div>
+	</div>
+</section>
+<div class="container-fluid p-0 fields">
+	<h1 class="interest text-uppercase" data-aos="fade-up" data-aos-duration="1000">Our Interest Fields</h1>
+	<div class="swiper-container">
+	    <div class="swiper-wrapper">
+	      <div class="swiper-slide" style="background-image:url({% static 'img/raspberry.jpg' %});"><span>Raspberry Pi</span></div>
+	      <div class="swiper-slide" style="background-image:url({% static 'img/ardiuno.jpg' %});"><span>Arduino</span></div>
+	      <div class="swiper-slide" style="background-image:url({% static 'img/robotics.jpg' %});"><span>Robotics</span></div>
+	      <div class="swiper-slide" style="background-image:url({% static 'img/ai.jpg' %});"><span>Artificial Int.</span></div>
+	      <div class="swiper-slide" style="background-image:url({% static 'img/python.jpg' %});"><span>Python</span></div>
+	      <div class="swiper-slide" style="background-image:url({% static 'img/django.jpg' %})"><span>Django</span></div>
+	    </div>
+	    <!-- Add Pagination -->
+	    <div class="swiper-pagination"></div>
+  	</div>
+</div><script type="text/javascript" src="{% static 'js/swiper.min.js' %}"></script>
   <script>
-  	setTimeout(function(){
-  		$('.loader_bg').fadeToggle();
-  	},1500);
+    var swiper = new Swiper('.swiper-container', {
+      effect: 'coverflow',
+      grabCursor: true,
+      autoplay:true,
+      centeredSlides: true,
+      slidesPerView: 'auto',
+      coverflowEffect: {
+        rotate: 50,
+        stretch: 0,
+        depth: 400,
+        modifier: 1,
+        slideShadows : true,
+      },
+      pagination: {
+        el: '.swiper-pagination',
+      },
+    });
   </script>
-{% endblock content %}
+  <section id="banner">
+  	<div class="container-fluid p-0">
+  		<div class="banner-sub second" style="background-image:url({% static 'img/blogger.jpg' %}">
+  			<div class="info">
+	  			<h1>Want to Upload Projects with Us ? Click on View More and start Uploading Your Projects.</h1>
+	  			<button class="read">View More</button>
+  			</div>
+  		</div>
+  	</div>
+  </section>
+	<section id="blog">
+		<div class="container-fluid p-0 m-0">
+			<h1 class="ml7">
+			  <span class="text-wrapper">
+			    <span class="letters text-uppercase">Latest Blog</span>
+			  </span>
+			</h1>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+<script type="text/javascript">
+	var textWrapper = document.querySelector('.ml7 .letters');
+textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+
+anime.timeline({loop: true})
+  .add({
+    targets: '.ml7 .letter',
+    translateY: ["1.1em", 0],
+    translateX: ["0.55em", 0],
+    translateZ: 0,
+    rotateZ: [180, 0],
+    duration: 750,
+    easing: "easeOutExpo",
+    delay: (el, i) => 50 * i
+  }).add({
+    targets: '.ml7',
+    opacity: 0,
+    duration: 1000,
+    easing: "easeOutExpo",
+    delay: 1000
+  });
+</script>
+			<div class="blog-sub">
+				<div class="row p-0 m-0">
+					<div class="col-md-6">
+						<div class="info">
+							<h1>THE STUDIO</h1>
+							<p>Attentive and optimistic, we create a rare yet friendly environment that encourages new ideas and aim to provide superior products and services every single day.</p>
+							<button id="explore">Explore</button>
+						</div>
+					</div>
+					<div class="col-md-6 bg-blog">
+						<div class="blog-bg">
+							<img src="{% static 'img/blog1.jpg' %}">
+						</div>
+					</div>
+				</div>
+				<div class="row blog-grid">
+					<div class="col-md-6 bg-blog">
+						<div class="blog-bg">
+							<img src="{% static 'img/blog2.jpg' %}">
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="info">
+							<h1>THE STUDIO</h1>
+							<p>Attentive and optimistic, we create a rare yet friendly environment that encourages new ideas and aim to provide superior products and services every single day.</p>
+							<button id="explore">Explore</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+  <section class="pro-area">
+		<div class="container">
+			<div class="project-title pb-5">
+				<h1 class="text-uppercase title-h1">Latest From the Projects</h1>
+			</div>
+			<div class="row grid">
+				<div class="col-lg-4 col-md-6 col-sm-12 element-item popular">
+					<div class="our-project mb-4">
+						<div class="img">
+							<a class="test-popup-link">
+								<img src="{% static 'img/ard1.jpg' %}">
+							</a>
+						</div>
+						<div class="title py-4 detail">
+							<h4 class="text-uppercase">Arduino</h4>
+							<span class="text-secondary">Communication</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<script type="text/javascript">
+		$(document).ready(function(){
+	let $btns = $('.pro-area .btn-grp button');
+	$btns.click(function(e){
+		$('.pro-area .btn-grp button').removeClass('active');
+		e.target.classList.add('active');
+		let selector = $(e.target).attr('data-filter');
+		$('.pro-area .grid').isotope({
+			filter : selector
+		});
+		return false;
+	});
+	$('.our-project').click(function(){
+		$(this).toggleClass('active');
+	})
+});
+	</script>
+	<section id="team" class=" mb-4">
+		<div class="container">
+        <br><h2 class="ml2">Our Team</h2><br><br>
+        <script type="text/javascript">
+        	var textWrapper = document.querySelector('.ml2');
+textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+
+anime.timeline({loop: true})
+  .add({
+    targets: '.ml2 .letter',
+    scale: [4,1],
+    opacity: [0,1],
+    translateZ: 0,
+    easing: "easeOutExpo",
+    duration: 950,
+    delay: (el, i) => 70*i
+  }).add({
+    targets: '.ml2',
+    opacity: 0,
+    duration: 1000,
+    easing: "easeOutExpo",
+    delay: 1000
+  });
+        </script>
+ <div class="row">
+     <div class="col-lg-3 mb-4">
+        <div class="profile z-depth-4 animated rollIn delay-1s">
+
+
+        <div class="dd">
+
+            <img src="{% static 'img/Sonia.jpeg' %}" style="width:100px;" class="rounded-circle z-depth-2 animated bounceIn delay-2s">
+            </div>
+
+            <div class="paragraph animated fadeIn delay-3s">
+
+            <h4>Sonia</h4>
+                <h6>Backend Developer</h6>
+
+
+                <i class="fa fa-envelope"> <span>soni4585@gmail.com</span></i><br>
+                <i class="fa fa-map-marker"> <span>Amritsar, India.</span></i>
+
+            </div>
+            <div class="links animated rollIn delay-4s">
+
+                <a class="btn-floating btn-sm purple-gradient"><i class="fa fa-youtube"></i></a>
+                <a class="btn-floating btn-sm blue-gradient"><i class="fa fa-facebook"></i></a>
+                <a class="btn-floating btn-sm aqua-gradient"><i class="fa fa-linkedin"></i></a>
+                <a class="btn-floating btn-sm peach-gradient"><i class="fa fa-instagram"></i></a>
+            </div>
+         </div>
+        </div>
+
+
+
+
+        <div class="col-lg-3 mb-4">
+        <div class="profile z-depth-4 animated rollIn delay-1s">
+
+
+        <div class="dd text-center">
+
+            <img src="{% static 'img/Shatrudhan.jpeg ' %}" style="width:100px;" class="rounded-circle z-depth-2 animated bounceIn delay-2s">
+            </div>
+
+            <div class="paragraph animated fadeIn delay-3s">
+
+            <h4>Shatrudhan</h4>
+                <h6>Frontend Web Developer</h6>
+
+
+                <i class="fa fa-envelope"> <span class="s-mail">shatrudhan4585@gmail.com</span></i><br>
+                <i class="fa fa-map-marker"> <span>Gaya, India.</span></i>
+
+            </div>
+            <div class="links animated rollIn delay-4s">
+
+                <a class="btn-floating btn-sm purple-gradient"><i class="fa fa-youtube"></i></a>
+                <a class="btn-floating btn-sm blue-gradient"><i class="fa fa-facebook"></i></a>
+                <a class="btn-floating btn-sm aqua-gradient"><i class="fa fa-linkedin"></i></a>
+                <a class="btn-floating btn-sm peach-gradient"><i class="fa fa-instagram"></i></a>
+            </div>
+         </div>
+        </div>
+
+
+
+
+        <div class="col-lg-3 mb-4">
+        <div class="profile z-depth-4 animated rollIn delay-1s">
+
+        <div class="dd">
+
+            <img src="{% static 'img/Sheetal.jpeg' %}" style="width:100px;" class="rounded-circle z-depth-2 animated bounceIn delay-2s">
+            </div>
+
+            <div class="paragraph animated fadeIn delay-3s">
+
+            <h4>Sheetal</h4>
+                <h6>Frontend Web Developer</h6>
+
+
+                <i class="fa fa-envelope"> <span>sheetal@gmail.com</span></i><br>
+                <i class="fa fa-map-marker"> <span>Amritsar, India.</span></i>
+
+            </div>
+            <div class="links animated rollIn delay-4s">
+
+                <a class="btn-floating btn-sm purple-gradient"><i class="fa fa-youtube"></i></a>
+                <a class="btn-floating btn-sm blue-gradient"><i class="fa fa-facebook"></i></a>
+                <a class="btn-floating btn-sm aqua-gradient"><i class="fa fa-linkedin"></i></a>
+                <a class="btn-floating btn-sm peach-gradient"><i class="fa fa-instagram"></i></a>
+            </div>
+         </div>
+        </div>
+
+
+
+
+        <div class="col-lg-3 mb-4">
+        <div class="profile z-depth-4 animated rollIn delay-1s">
+
+        <div class="dd">
+
+            <img src="{% static 'img/Srishti.jpg' %}" style="width:100px;" class="rounded-circle z-depth-2 animated bounceIn delay-2s">
+            </div>
+
+            <div class="paragraph animated fadeIn delay-3s">
+
+            <h4>Srishti</h4>
+                <h6>Backend Developer</h6>
+
+
+                <i class="fa fa-envelope"> <span>srishti4585@gmail.com</span></i><br>
+                <i class="fa fa-map-marker"> <span>Amritsar, India.</span></i>
+
+            </div>
+            <div class="links animated rollIn delay-4s">
+
+                <a class="btn-floating btn-sm purple-gradient"><i class="fa fa-youtube"></i></a>
+                <a class="btn-floating btn-sm blue-gradient"><i class="fa fa-facebook"></i></a>
+                <a class="btn-floating btn-sm aqua-gradient"><i class="fa fa-linkedin"></i></a>
+                <a class="btn-floating btn-sm peach-gradient"><i class="fa fa-instagram"></i></a>
+            </div>
+         </div>
+        </div>
+        </div></div>
+	</section>
+	<footer>
+		<div class="container-fluid">
+			<div class="footer-sub">
+				<h3>Contact Us</h3>
+				<form>
+					<input type="text" name="" placeholder="Name"><br>
+					<input type="email" name="" placeholder="Email"><br>
+					<textarea placeholder="Message"></textarea><br>
+					<button>Send</button>
+				</form>
+				<div class="row">
+					<div class="col-md-6 menu">
+						<ul>
+							<li><span>Home</span> <span>How it Works</span></li>
+							<li><span>About Us</span> <span>Blog</span></li>
+							<li><span>Project</span> <span>Login</span></li>
+						</ul>
+					</div>
+					<div class="col-md-6 social">
+						<ul>
+							<li><i class="fa fa-facebook" aria-hidden="true"></i></li>
+							<li><i class="fa fa-twitter" aria-hidden="true"></i></li>
+							<li><i class="fa fa-instagram" aria-hidden="true"></i></li>
+							<li><i class="fa fa-youtube" aria-hidden="true"></i></li>
+						</ul>
+					</div>
+				</div>
+	<div class="declaimer">
+		<span>© 2020 - Innovza | All rights reserved</span>
+	</div>
+</footer>
+</body>
+</html>

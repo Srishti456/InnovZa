@@ -1,46 +1,386 @@
+{% load static %}
 <html>
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width , initial-scale=1.0">
-	<title>USER PAGE</title>
-	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-
+    <title></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/profile.css' %}">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/chartist/0.9.7/chartist.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jvectormap/2.0.4/jquery-jvectormap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/chartist/0.9.7/chartist.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="{% static 'js/isotope.min.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sparklines/2.1.2/jquery.sparkline.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.1.1/Chart.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.6.10/js/min/perfect-scrollbar.jquery.min.js"></script>
 </head>
-<body style="margin: 0;padding: 0;">
-	<section id="detail" style="position: relative;width: 100%;padding: 5em 0;">
-		<div class="container-fluid p-0">
-			<div class="sub-detail" style="position: relative;width: 60%;margin: 0 auto;">
-				<div class="row d-grid" style="position: relative;height: 400px;background:linear-gradient(45deg,#0984e3,#e056fd);background-size: cover;box-shadow: 0px 0px 20px rgba(0,0,0,0.2);">
-					<div class="col-md-5 tab1" style="position: relative;height: 100%;background: linear-gradient(45deg,#283593,#6A1B9A);box-shadow: 5px 5px 10px rgba(0,0,0,0.4);">
-						<div class="imgbx" style="width: 100px;height: 100px;background: #fff;margin:30px auto;border-radius: 50%;"><img src="{{ user.profile_pic.url }}" style="border-radius:50%;width: 100px;height: 100px;">
-						</div>
-						<div class="content" style="text-align: center;color: #fff;">
-							<h3 style="letter-spacing: 1px;font-weight: 200;">{{ request.user.username }}</h3>
-							<a href="{% url 'userBlog' %}"><h5 style="letter-spacing: 1px;font-weight: 200;color:white;"> Your Blog <span>{{ post_num }}</span></h5></a>
-							<a href="{% url 'userProject' %}"><h5 style="letter-spacing: 1px;font-weight: 200;color:white;"> Your Project <span>{{ project_num }}</span></h5></a><br>
-							<a class="btn btn-primary" href="{% url 'profile_photo' %}" role="button" style="width: 170px;height: 30px;border: none;color: #283593;background: #fff;transition: .5s;">Upload Pic <i class="fas fa-upload ml-3"></i></a><br><br>
-							<a class="btn btn-primary" href="{% url 'logoff' %}" role="button" style="width: 170px;height: 30px;border: none;color: #283593;background: #fff;transition: .5s;">Logout <i class="fas fa-sign-in-alt ml-3"></i> </a>
-						</div>
-					</div>
-					<div class="col-md-7 tab2" style="position: relative;height: 100%;">
-						<div class="block" style="position: absolute;top: 20%;left: 0;">
-							<ul class="blck1 mb-3" style="position: relative;display: flex;">
-								<li style="width: 150px;height: 100px;padding-top: 30px;background:#000;color: #fff;list-style: none;margin-right: 30px;text-align: center;cursor: pointer;transition: .5s;border-radius: 10px;"><a href="/blog">BLOGS</a></li>
-								<li style="width: 150px;height: 100px;padding-top: 30px;background:#000;color: #fff;list-style: none;margin-right: 30px;text-align: center;cursor: pointer;transition: .5s;border-radius: 10px;"><a href="{% url 'post_info' %}"><i class="fas fa-plus"></i><br><p>Create Your Blog</p></a></li>
-							</ul>
-							<ul class="blck1" style="position: relative;display: flex;">
-								<li style="width: 150px;height: 100px;padding-top: 30px;background:#000;color: #fff;list-style: none;margin-right: 30px;text-align: center;cursor: pointer;transition: .5s;border-radius: 10px;"><a href="/projectinfo">PROJECTS </a></li>
-								<li style="width: 150px;height: 100px;padding-top: 30px;background:#000;color: #fff;list-style: none;margin-right: 30px;text-align: center;cursor: pointer;transition: .5s;border-radius: 10px;"><a href="{% url 'project_info' %}"><i class="fas fa-plus"></i><br><p>Upload Your Project</p></a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
+<body style="background:url({% static 'img/bg2.jpg' %}) no-repeat;"><nav class="navbar navbar-expand-md">
+  <!-- Brand -->
+  <a class="navbar-brand" href="#">Innovza</a>
+
+  <!-- Toggler/collapsibe Button -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <i class="fas fa-bars"></i>
+  </button>
+
+  <!-- Navbar links -->
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <div class="mr-auto"></div>
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="/blog">Blogs</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/projectinfo">Projects</a>
+      </li>
+        <li class="nav-item">
+        <a class="nav-link" href="/logoff">Logout</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+    <!-- Start Page Loading -->
+    <!-- End Page Loading -->
+
+    <!-- //////////////////////////////////////////////////////////////////////////// -->
+
+    <!-- START HEADER -->
+    <!-- END HEADER -->
+
+    <!-- //////////////////////////////////////////////////////////////////////////// -->
+
+    <!-- START MAIN -->
+    <div id="main">
+            <!-- END LEFT SIDEBAR NAV-->
+
+            <!-- //////////////////////////////////////////////////////////////////////////// -->
+
+            <!-- START CONTENT -->
+            <section id="content">
+    <div class="row">
+
+      <div class="col s4">
+        <!-- Promo Content 1 goes here -->
+      </div>
+      <div class="col s4">
+        <!-- Promo Content 2 goes here -->
+      </div>
+      <div class="col s4">
+        <!-- Promo Content 3 goes here -->
+      </div>
+
+    </div>
+                <!--start container-->
+                <div class="container2">
+                    <!-- //////////////////////////////////////////////////////////////////////////// -->
+                    <div id="work-collections">
+                        <div class="row">
+                               <div class="col s12 m6 l4">
+                                <div id="profile-card" class="card">
+                                    <div class="card-image waves-effect waves-block waves-light">
+                                        <img class="activator" src="http://demo.geekslabs.com/materialize/v2.1/layout03/images/user-bg.jpg" alt="user background">
+                                    </div>
+                                    <div class="card-content">
+                                        <img src="{{ user.profile_pic.url }}"  style="width:100px;" alt="" class="circle responsive-img activator card-profile-image">
+                                        <a class="btn-floating activator btn-move-up waves-effect waves-light darken-2 right">
+                                            <i class="mdi-action-account-circle"></i>
+                                        </a>
+                                        <br>
+                                        <span class="card-title activator grey-text text-darken-4">{{ request.user.username }}</span>
+                                        <p><i class="mdi-action-perm-identity cyan-text text-darken-2"></i> {{ user.full_name }}</p>
+                                        <p><i class="mdi-action-perm-phone-msg cyan-text text-darken-2"></i>{{ user.phoneno }}</p>
+                                    </div>
+                                    <div class="card-reveal">
+                                        <span class="card-title grey-text text-darken-4"> {{user.username }} <i class="mdi-navigation-close right"></i></span>
+                                        <p>Here is some more information about User</p>
+                                        <p><i class="mdi-action-perm-identity cyan-text text-darken-2"></i> {{ user.full_name }}</p>
+                                        <p><i class="mdi-action-perm-phone-msg cyan-text text-darken-2"></i> {{ user.phoneno }}</p>
+                                        <p><i class="mdi-communication-email cyan-text text-darken-2"></i> {{ user.email }}</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col s12 m12 l8">
+                                <ul id="projects-collection" class="collection">
+                                    <li class="collection-item avatar">
+                                        <i class="mdi-file-folder circle light-blue darken-2"></i>
+                                        <span class="collection-header">MAIN</span>
+                                        <a href="#" class="secondary-content"><i class="mdi-action-grade"></i></a>
+                                    </li>
+                                    <li class="collection-item">
+                                        <div class="row">
+                                            <div class="col s6">
+                                                <p class="collections-title">Blog</p>
+                                                <a href="{% url 'userBlog' %}"><p class="collections-content">Current : {{ post_num }}</p></a>
+                                            </div>
+                                            <div class="col s3">
+                                                <span><button class="blog-btn"><i class="far fa-newspaper"></i></button></span>
+                                            </div>
+                                            <div class="col s3">
+                                                <div id="project-line-1"><canvas width="135" height="30" style="display: inline-block; width: 135px; height: 30px; vertical-align: top;"></canvas></div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="collection-item">
+                                        <div class="row">
+                                            <div class="col s6">
+                                                <p class="collections-title">Project</p>
+                                                <a href="{% url 'userProject' %}"><p class="collections-content">Current : {{ project_num }}</p></a>
+                                            </div>
+                                            <div class="col s3">
+                                                <span ><button class="blog-btn project"><i class="fab fa-raspberry-pi"></i></button></span>
+                                            </div>
+                                            <div class="col s3">
+                                                <div id="project-line-2"><canvas width="135" height="30" style="display: inline-block; width: 135px; height: 30px; vertical-align: top;"></canvas></div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="collection-item">
+                                        <div class="row">
+                                            <div class="col s6">
+                                                <p class="collections-title">Preview</p>
+                                                <p class="collections-content">Password Reset</p>
+                                            </div>
+                                            <div class="col s3">
+                                                <span><button class="blog-btn preview"><i class="fas fa-search"></i></button></span>
+                                            </div>
+                                            <div class="col s3">
+                                                <div id="project-line-3"><canvas width="135" height="30" style="display: inline-block; width: 135px; height: 30px; vertical-align: top;"></canvas></div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="collection-item">
+                                        <div class="row">
+                                            <div class="col s6">
+                                                <p class="collections-title">Account Details</p>
+                                                <p class="collections-content">{{ user.email }}</p>
+                                            </div>
+                                            <div class="col s3">
+                                                <span><button class="blog-btn account"><i class="fas fa-user"></i></button></span>
+                                            </div>
+                                            <div class="col s3">
+                                                <div id="project-line-4"><canvas width="135" height="30" style="display: inline-block; width: 135px; height: 30px; vertical-align: top;"></canvas></div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+        </div>
+
+<script type="text/javascript">
+
+
+$(function() {
+
+  "use strict";
+
+  var window_width = $(window).width();
+
+  /*Preloader*/
+  $(window).load(function() {
+    setTimeout(function() {
+      $('body').addClass('loaded');
+    }, 200);
+  });
+
+
+  // Search class for focus
+  $('.header-search-input').focus(
+  function(){
+      $(this).parent('div').addClass('header-search-wrapper-focus');
+  }).blur(
+  function(){
+      $(this).parent('div').removeClass('header-search-wrapper-focus');
+  });
+
+  // Check first if any of the task is checked
+  $('#task-card input:checkbox').each(function() {
+    checkbox_check(this);
+  });
+
+  // Task check box
+  $('#task-card input:checkbox').change(function() {
+    checkbox_check(this);
+  });
+
+  // Check Uncheck function
+  function checkbox_check(el){
+      if (!$(el).is(':checked')) {
+          $(el).next().css('text-decoration', 'none'); // or addClass
+      } else {
+          $(el).next().css('text-decoration', 'line-through'); //or addClass
+      }
+  }
+
+  /*----------------------
+  * Plugin initialization
+  ------------------------*/
+
+  // Materialize Slider
+  $('.slider').slider({
+    full_width: true
+  });
+
+
+
+  // Materialize sideNav
+
+  //Main Left Sidebar Menu
+  $('.sidebar-collapse').sideNav({
+    edge: 'left', // Choose the horizontal origin
+  });
+
+  // FULL SCREEN MENU (Layout 02)
+  $('.menu-sidebar-collapse').sideNav({
+        menuWidth: 240,
+        edge: 'left', // Choose the horizontal origin
+        //defaultOpen:true // Set if default menu open is true
+      });
+
+
+
+
+  // Pikadate datepicker
+  $('.datepicker').pickadate({
+    selectMonths: true, // Creates a dropdown to control month
+    selectYears: 15 // Creates a dropdown of 15 years to control year
+  });
+
+  // Perfect Scrollbar
+  $('select').not('.disabled').material_select();
+    var leftnav = $(".page-topbar").height();
+    var leftnavHeight = window.innerHeight - leftnav;
+  $('.leftside-navigation').height(leftnavHeight).perfectScrollbar({
+    suppressScrollX: true
+  });
+    var righttnav = $("#chat-out").height();
+  $('.rightside-navigation').height(righttnav).perfectScrollbar({
+    suppressScrollX: true
+  });
+
+
+  // Fullscreen
+  function toggleFullScreen() {
+    if ((document.fullScreenElement && document.fullScreenElement !== null) ||
+      (!document.mozFullScreen && !document.webkitIsFullScreen)) {
+      if (document.documentElement.requestFullScreen) {
+        document.documentElement.requestFullScreen();
+      }
+      else if (document.documentElement.mozRequestFullScreen) {
+        document.documentElement.mozRequestFullScreen();
+      }
+      else if (document.documentElement.webkitRequestFullScreen) {
+        document.documentElement.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
+      }
+    }
+    else {
+      if (document.cancelFullScreen) {
+        document.cancelFullScreen();
+      }
+      else if (document.mozCancelFullScreen) {
+        document.mozCancelFullScreen();
+      }
+      else if (document.webkitCancelFullScreen) {
+        document.webkitCancelFullScreen();
+      }
+    }
+  }
+
+  $('.toggle-fullscreen').click(function() {
+    toggleFullScreen();
+  });
+
+
+  // Floating-Fixed table of contents (Materialize pushpin)
+  if ($('nav').length) {
+    $('.toc-wrapper').pushpin({
+      top: $('nav').height()
+    });
+  }
+  else if ($('#index-banner').length) {
+    $('.toc-wrapper').pushpin({
+      top: $('#index-banner').height()
+    });
+  }
+  else {
+    $('.toc-wrapper').pushpin({
+      top: 0
+    });
+  }
+
+  // Toggle Flow Text
+  var toggleFlowTextButton = $('#flow-toggle')
+  toggleFlowTextButton.click(function() {
+    $('#flow-text-demo').children('p').each(function() {
+      $(this).toggleClass('flow-text');
+    })
+  });
+
+
+  //Toggle Containers on page
+  var toggleContainersButton = $('#container-toggle-button');
+  toggleContainersButton.click(function() {
+    $('body .browser-window .container, .had-container').each(function() {
+      $(this).toggleClass('had-container');
+      $(this).toggleClass('container');
+      if ($(this).hasClass('container')) {
+        toggleContainersButton.text("Turn off Containers");
+      }
+      else {
+        toggleContainersButton.text("Turn on Containers");
+      }
+    });
+  });
+
+  // Detect touch screen and enable scrollbar if necessary
+  function is_touch_device() {
+    try {
+      document.createEvent("TouchEvent");
+      return true;
+    }
+    catch (e) {
+      return false;
+    }
+  }
+  if (is_touch_device()) {
+    $('#nav-mobile').css({
+      overflow: 'auto'
+    })
+  }
+
+  //LINE CHART WITH AREA IN SIDEBAR
+    new Chartist.Line('#ct2-chart', {
+        labels: [1, 2, 3, 4, 5, 6, 7, 8],
+        series: [
+            [5, 9, 7, 8, 5, 3, 5, 4]
+        ]
+    }, {
+        low: 0,
+        showArea: true
+    });
+
+  //Trending chart for small screen
+  if(window_width <= 480){
+    $("#trending-line-chart").attr({
+      height: '200'
+    });
+  }
+
+
+}); // end of document ready
+</script>
 </body>
 </html>

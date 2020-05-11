@@ -1,7 +1,111 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-
+<header class="header">
+      <!-- Main Navbar-->
+      <nav class="navbar navbar-expand-lg">
+        <div class="container">
+          <!-- Navbar Brand -->
+          <div class="navbar-header d-flex align-items-center justify-content-between">
+            <!-- Navbar Brand --><a href="index.html" class="navbar-brand"><h3 style="color:MediumBlue;">InnoVza</h3></a>
+            <!-- Toggle Button-->
+            <button type="button" data-toggle="collapse" data-target="#navbarcollapse" aria-controls="navbarcollapse" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"><span></span><span></span><span></span></button>
+          </div>
+          <!-- Navbar Menu -->
+          <div id="navbarcollapse" class="collapse navbar-collapse">
+            {% if request.author.is_authenticated %}
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item"><a href="/userpage" class="nav-link ">Home</a>
+              </li>
+              <li class="nav-item"><a href="/blog" class="nav-link active ">Blog</a>
+              </li>
+              </li>
+            </ul>
+            {% else %}
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item"><a href="/" class="nav-link ">Home</a>
+              </li>
+              <li class="nav-item"><a href="/blog" class="nav-link active ">Blog</a>
+              </li>
+              <li class="nav-item"><a href="/signin" class="nav-link ">Login</a>
+              </li>
+            </ul>
+            {% endif %}
+          </div>
+        </div>
+      </nav>
+    </header>
+      <!-- Main Navbar-->
+      <nav class="navbar navbar-expand-lg">
+        <div class="search-area">
+          <div class="search-area-inner d-flex align-items-center justify-content-center">
+            <div class="close-btn"><i class="icon-close"></i></div>
+            <div class="row d-flex justify-content-center">
+              <div class="col-md-8">
+                <form action="#">
+                  <div class="form-group">
+                    <input type="search" name="search" id="search" placeholder="What are you looking for?">
+                    <button type="submit" class="submit"><i class="icon-search-1"></i></button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container">
+          <!-- Navbar Brand -->
+          <div class="navbar-header d-flex align-items-center justify-content-between">
+            <!-- Navbar Brand --><a href="index.html" class="navbar-brand"><h3 style="color:MediumBlue;">InnoVza</h3></a>
+            <!-- Toggle Button-->
+            <button type="button" data-toggle="collapse" data-target="#navbarcollapse" aria-controls="navbarcollapse" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"><span></span><span></span><span></span></button>
+          </div>
+          <!-- Navbar Menu -->
+          <div id="navbarcollapse" class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a href="/userpage" class="nav-link ">Home</a></li>
+                <li class="nav-item"><a href="/blog" class="nav-link ">Blogs</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+{% else %}
+<header class="header">
+      <!-- Main Navbar-->
+      <nav class="navbar navbar-expand-lg">
+        <div class="search-area">
+          <div class="search-area-inner d-flex align-items-center justify-content-center">
+            <div class="close-btn"><i class="icon-close"></i></div>
+            <div class="row d-flex justify-content-center">
+              <div class="col-md-8">
+                <form action="#">
+                  <div class="form-group">
+                    <input type="search" name="search" id="search" placeholder="What are you looking for?">
+                    <button type="submit" class="submit"><i class="icon-search-1"></i></button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container">
+          <!-- Navbar Brand -->
+          <div class="navbar-header d-flex align-items-center justify-content-between">
+            <!-- Navbar Brand --><a href="index.html" class="navbar-brand"><h3 style="color:MediumBlue;">InnoVza</h3></a>
+            <!-- Toggle Button-->
+            <button type="button" data-toggle="collapse" data-target="#navbarcollapse" aria-controls="navbarcollapse" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"><span></span><span></span><span></span></button>
+          </div>
+          <!-- Navbar Menu -->
+          <div id="navbarcollapse" class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a href="/" class="nav-link ">Home</a></li>
+                <li class="nav-item"><a href="/blog" class="nav-link ">Blogs</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+{% endif %}
     <div class="container">
       <div class="row">
         <!-- Latest Posts -->
@@ -84,6 +188,7 @@
             {% for cat in category_count %}
             <div class="item d-flex justify-content-between"><a href="#">{{ cat.categories__title }}</a><span>{{ cat.categories__title__count }}</span></div>
             {% endfor %}
+          </div>
           </div>
         </aside>
       </div>
