@@ -355,15 +355,13 @@ anime.timeline({loop: true})
 	    <div class="swiper-wrapper">
 	      <div class="swiper-slide" style="background-image:url({% static 'img/raspberry.jpg' %});"><span>Raspberry Pi</span></div>
 	      <div class="swiper-slide" style="background-image:url({% static 'img/ardiuno.jpg' %});"><span>Arduino</span></div>
-	      <div class="swiper-slide" style="background-image:url({% static 'img/robotics.jpg' %});"><span>Robotics</span></div>
-	      <div class="swiper-slide" style="background-image:url({% static 'img/ai.jpg' %});"><span>Artificial Int.</span></div>
-	      <div class="swiper-slide" style="background-image:url({% static 'img/python.jpg' %});"><span>Python</span></div>
-	      <div class="swiper-slide" style="background-image:url({% static 'img/django.jpg' %})"><span>Django</span></div>
+	      <div style="background-image:url({% static 'img/robotics.jpg' %});"><span>Robotics</span></div>
 	    </div>
 	    <!-- Add Pagination -->
 	    <div class="swiper-pagination"></div>
   	</div>
-</div><script type="text/javascript" src="{% static 'js/swiper.min.js' %}"></script>
+</div>
+  <script type="text/javascript" src="{% static 'js/swiper.min.js' %}"></script>
   <script>
     var swiper = new Swiper('.swiper-container', {
       effect: 'coverflow',
