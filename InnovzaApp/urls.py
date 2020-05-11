@@ -4,6 +4,7 @@ from django.urls import path
 from . import views
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.auth import views as auth_views
 urlpatterns = [
     url(r'^$',views.index,name='index'),
     url(r'^signup/$',views.signup,name='signup'),
@@ -23,4 +24,10 @@ urlpatterns = [
     path('project/<id>/',views.project,name='project-detail'),
     url(r'^logoff$', views.logoff, name='logoff'),
     url(r'^userpage$',views.userpage,name='userpage'),
+    url(r'^accountdetail$',views.accountdetail,name='accountdetail'),
+    url(r'^password_reset/$', auth_views.PasswordResetView.as_view(), name='password_reset'),
+    url(r'^password_reset/done/$', auth_views.PasswordResetDoneView.as_view(), name='password_reset_done'),
+    url(r'^password_reset/confirm/(?P<uidb64>[0-9A-Za-z]+)-(?P<token>.+)/$', auth_views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
+    url(r'^password_reset/complete/$', auth_views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
+    url(r'^search$', views.search, name='search'),
 ]

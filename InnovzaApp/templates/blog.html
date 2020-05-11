@@ -87,7 +87,12 @@
             <header>
               <h3 class="h6">Search the blog</h3>
             </header>
-
+            <form action="{% url 'search' %}" class="search-form">
+              <div class="form-group">
+                <input type="text" name="q" placeholder="What are you looking for?">
+                <button type="submit" class="submit"><i class="icon-search"></i></button>
+              </div>
+            </form>
           </div>
           <!-- Widget [Latest Posts Widget]        -->
           <div class="widget latest-posts">
@@ -115,7 +120,7 @@
               <h3 class="h6">Categories</h3>
             </header>
             {% for cat in category_count %}
-            <div class="item d-flex justify-content-between"><a href="#">{{ cat.categories__title }}</a><span>{{ cat.categories__title__count }}</span></div>
+            <div class="item d-flex justify-content-between">{{ cat.categories__title }}<span>{{ cat.categories__title__count }}</span></div>
             {% endfor %}
           </div>
         </aside>

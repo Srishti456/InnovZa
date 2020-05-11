@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<header class="header">
+      <!-- Main Navbar-->
+      <nav class="navbar navbar-expand-lg">
+        <div class="container">
+          <!-- Navbar Brand -->
+          <div class="navbar-header d-flex align-items-center justify-content-between">
+            <!-- Navbar Brand --><a href="index.html" class="navbar-brand"><h3 style="color:MediumBlue;">InnoVza</h3></a>
+            <!-- Toggle Button-->
+            <button type="button" data-toggle="collapse" data-target="#navbarcollapse" aria-controls="navbarcollapse" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"><span></span><span></span><span></span></button>
+          </div>
+          <!-- Navbar Menu -->
+          <div id="navbarcollapse" class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item"><a href="/projectinfo" class="nav-link ">BACK</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+<br>
+<div class="container bg-light w-100">
+    <h2 class="display-6 border-bottom py-3">Results for "{{ query }}"</h2>
+    <br>
+    {% for post in queryset %}
+    <div class="my-1">
+    <a class="link" href="{{ post.get_absolute_url }}">{{ post.title}}</a><br>
+    </div>
+    {% endfor %}
+</div>
+{% endblock content %}

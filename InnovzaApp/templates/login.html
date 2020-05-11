@@ -26,7 +26,10 @@
 								<button type="submit" class="btn btn-primary">LogIn With InnoVza</button>
 							</div>
 							<div class="form-group">
-								 <h5> Forget Your Password ???  <a href="#">Reset</a></h5>
+								 <h5> Forget Your Password ???  <a href="{% url 'password_reset' %}">Reset</a></h5>
+							</div>
+							<div class="form-group">
+								 <h5>Not Registered Yet !!!&nbsp <a href="{% url 'signup' %}">SignUp</a> &nbsp from here....</h5>
 							</div>
 						</div>
 					</form>

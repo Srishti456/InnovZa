@@ -1,8 +1,12 @@
+from django import template
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.paginator import PageNotAnInteger, Paginator, EmptyPage
 from django.shortcuts import render, redirect, get_object_or_404,reverse
+from django.utils.safestring import mark_safe
+from django.template.defaultfilters import stringfilter
 from .forms import UserDataForm,CommentForm,ProjectCommentForm
 from django.contrib.auth import authenticate, login,logout
 from django.http import HttpResponse
@@ -15,6 +19,26 @@ from .models import UserInfo,Post,Category,Project,PostView,ProjectView
 from django.db.models import Count,Q
 
 # Create your views here.
+def search(request):
+    queryset=Post.objects.all()
+    query=request.GET.get('q')
+    if query:
+        queryset=queryset.filter(
+            Q(title__icontains=query) |
+            Q(overview__icontains=query)
+        ).distinct()
+        context={
+            'queryset':queryset,
+            'query': query,
+        }
+    return render(request,'search_results.html',context)
+
+register = template.Library()
+@register.filter
+def highlight_search(text, search):
+    highlighted = text.replace(search, '<span class="highlight">{}</span>'.format(search))
+    return mark_safe(highlighted)
+
 def get_category_count():
     from django.db.models import Count
     queryset=Post\
@@ -54,7 +78,7 @@ def register(request):
                                                    host='smtp.gmail.com')
             yagmail_smtp_connection.send(request.POST.get('email'), 'OTP for InnoVza login', totp.now())
             return redirect('verifyotp')
-    return HttpResponse('<h1>Data Not Submitted</h1>')
+    return redirect('signup')
 
 def verifyotp(request):
     if request.method=='POST':
@@ -290,4 +314,9 @@ def project(request,id):
 def logoff(request):
     logout(request)
     return redirect('index')
+
+def accountdetail(request):
+    user=UserInfo.objects.get(username=request.user.username)
+    user1=User.objects.get(username=request.user)
+    return render(request,'accountdetail.html',{'user':user,'user1':user1,})
 

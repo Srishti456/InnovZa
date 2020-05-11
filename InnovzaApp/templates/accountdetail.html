@@ -1,0 +1,71 @@
+{% load static %}
+<html>
+<head>
+	<title>Home | Innovza</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/changepassword.css' %}">
+	<link rel="stylesheet" href="{% static 'css/style.default.css' %}" id="theme-stylesheet">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/swiper.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+	<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+	 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.11/js/mdb.min.js"></script>
+	 <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.11/css/mdb.min.css" rel="stylesheet">
+    <link href="https://mdbootstrap.com/wp-content/themes/mdbootstrap4/css/compiled-4.5.11.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/landing.css' %}">
+	<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<script type="text/javascript" src="{% static 'js/isotope.min.js' %}"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.1/TweenMax.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-expand-md">
+  <!-- Brand -->
+  <a class="navbar-brand" href="#">Innovza</a>
+
+  <!-- Toggler/collapsibe Button -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <i class="fas fa-bars"></i>
+  </button>
+</nav>
+<div class="container bootstrap snippet" style="padding-left:10%;padding-top:5%;">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-md-offset-2">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <span class="glyphicon glyphicon-th"></span>
+                        Change password
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-6 col-md-6 separator social-login-box"> <br>
+                           <img alt="" class="img-thumbnail" src="{{ user.profile_pic.url }}" style="width:350px; height:350px;">
+                        </div>
+                        <div style="margin-top:80px;" class="col-xs-6 col-sm-6 col-md-6 login-box">
+                            <label class="mt-2" class="form-control form-control"> User Name : </label>
+                            {{ user.username }}
+                            <label class="mt-2" class="form-control form-control"> Full Name :</label>
+                            {{user.full_name }}
+                            <label class="mt-2" class="form-control form-control"> Phone Number :</label>
+                            {{ user.phoneno}}
+                            <label class="mt-2" class="form-control form-control"> Gender :</label>
+                            {{ user.gender }}<br>
+                            <label class="mt-2" class="form-control form-control"> Email :</label>
+                            {{ user1.email }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

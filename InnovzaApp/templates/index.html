@@ -4,6 +4,7 @@
 	<title>Home | Innovza</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.default.css' %}" id="theme-stylesheet">
 	<link rel="stylesheet" type="text/css" href="{% static 'css/swiper.min.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
@@ -99,7 +100,7 @@
   	<div class="mr-auto"></div>
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" href="/">Home</a>
+        <a class="nav-link" href="">Home</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/blog">Blogs</a>
@@ -125,9 +126,8 @@
           <path class="slide__overlay-path" d="M0,0 150,0 500,405 0,405" />
         </svg>
         <div class="slide__text">
-          <h2 class="slide__text-heading">Project name 1</h2>
-          <p class="slide__text-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio veniam minus illo debitis nihil animi facere, doloremque voluptate tempore quia. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio veniam minus illo debitis nihil animi facere, doloremque voluptate tempore quia.</p>
-          <a class="slide__text-link">Project link</a>
+          <h2 class="slide__text-heading">Raspberry</h2>
+          <p class="slide__text-desc">The Raspberry Pi Foundation works to put the power of computing and digital making into the hands of people all over the world. It does this by providing low-cost, high-performance computers . </p>
         </div>
       </div>
     </div>
@@ -138,9 +138,8 @@
           <path class="slide__overlay-path" d="M0,0 150,0 500,405 0,405" />
         </svg>
         <div class="slide__text">
-          <h2 class="slide__text-heading">Project name 2</h2>
-          <p class="slide__text-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio veniam minus illo debitis nihil animi facere, doloremque voluptate tempore quia. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio veniam minus illo debitis nihil animi facere, doloremque voluptate tempore quia.</p>
-          <a class="slide__text-link">Project link</a>
+          <h2 class="slide__text-heading">TEAM</h2>
+            <p class="slide__text-desc">A team is a group of individuals, all working together for a common purpose. The individuals comprising a team ideally should have common goals, common objectives and more or less think on the same lines.</p>
         </div>
       </div>
     </div>
@@ -151,9 +150,8 @@
           <path class="slide__overlay-path" d="M0,0 150,0 500,405 0,405" />
         </svg>
         <div class="slide__text">
-          <h2 class="slide__text-heading">Project name 3</h2>
-          <p class="slide__text-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio veniam minus illo debitis nihil animi facere, doloremque voluptate tempore quia. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio veniam minus illo debitis nihil animi facere, doloremque voluptate tempore quia.</p>
-          <a class="slide__text-link">Project link</a>
+          <h2 class="slide__text-heading">Arduino</h2>
+            <p class="slide__text-desc">Arduino is an open-source electronics platform based on easy-to-use hardware and software. Arduino boards are able to read inputs - light on a sensor, a finger on a button, or a Twitter message - and turn it into an output - activating a motor,etc.</p>
         </div>
       </div>
     </div>
@@ -164,9 +162,8 @@
           <path class="slide__overlay-path" d="M0,0 150,0 500,405 0,405" />
         </svg>
         <div class="slide__text">
-          <h2 class="slide__text-heading">Project name 4</h2>
-          <p class="slide__text-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio veniam minus illo debitis nihil animi facere, doloremque voluptate tempore quia. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio veniam minus illo debitis nihil animi facere, doloremque voluptate tempore quia.</p>
-          <a class="slide__text-link">Project link</a>
+          <h2 class="slide__text-heading">Creativity</h2>
+            <p class="slide__text-desc">Creativity is the act of turning new and imaginative ideas into reality. Creativity is characterised by the ability to perceive the world in new ways, to find hidden patterns, to make connections between seemingly unrelated phenomena, and to generate</p>
         </div>
       </div>
     </div>
@@ -333,7 +330,6 @@ anime.timeline({loop: true})
 				<div class="data">
 					<h1>Introduction</h1>
 					<p>Place where your innovation and interest can help you to explore and help you to earn from your projects . Moreover you can also Create Blogs , Upload the video of your projects and you can also sell the projects and the products like raspberry pi,sensors, arduino.</p>
-				<button class="read  btn">Read More</button>
 				</div>
 			</div>
 		</div>
@@ -348,7 +344,7 @@ anime.timeline({loop: true})
 		<div class="banner-sub" style="background-image:url({% static 'img/lap.jpg' %});">
 			<div class="info" >
 				<h1 data-aos="fade-up" data-aos-duration="1000">Want to Become Blogger with Us ? Click on View More and start posting your blogs.</h1>
-				<button class="read" data-aos="fade-up" data-aos-duration="1000">View More</button>
+				<a href="/signin" class="read" data-aos="fade-up" data-aos-duration="1000">View More</a>
 			</div>
 		</div>
 	</div>
@@ -392,7 +388,7 @@ anime.timeline({loop: true})
   		<div class="banner-sub second" style="background-image:url({% static 'img/blogger.jpg' %}">
   			<div class="info">
 	  			<h1>Want to Upload Projects with Us ? Click on View More and start Uploading Your Projects.</h1>
-	  			<button class="read">View More</button>
+	  			<a href="/signin" class="read" data-aos="fade-up" data-aos-duration="1000">View More</a>
   			</div>
   		</div>
   	</div>
@@ -427,77 +423,80 @@ anime.timeline({loop: true})
     delay: 1000
   });
 </script>
-			<div class="blog-sub">
-				<div class="row p-0 m-0">
-					<div class="col-md-6">
-						<div class="info">
-							<h1>THE STUDIO</h1>
-							<p>Attentive and optimistic, we create a rare yet friendly environment that encourages new ideas and aim to provide superior products and services every single day.</p>
-							<button id="explore">Explore</button>
-						</div>
-					</div>
-					<div class="col-md-6 bg-blog">
-						<div class="blog-bg">
-							<img src="{% static 'img/blog1.jpg' %}">
-						</div>
-					</div>
-				</div>
-				<div class="row blog-grid">
-					<div class="col-md-6 bg-blog">
-						<div class="blog-bg">
-							<img src="{% static 'img/blog2.jpg' %}">
-						</div>
-					</div>
-					<div class="col-md-6">
-						<div class="info">
-							<h1>THE STUDIO</h1>
-							<p>Attentive and optimistic, we create a rare yet friendly environment that encourages new ideas and aim to provide superior products and services every single day.</p>
-							<button id="explore">Explore</button>
-						</div>
-					</div>
-				</div>
+            <div class="row">
+          {% for obj in latest %}
+          <div class="post col-md-4">
+            <div class="post-thumbnail"><a href="{{ post.get_absolute_url }}">
+              <img src="{{ obj.thumbnail.url }}" alt="..." class="img-fluid"></a></div>
+            <div class="post-details">
+              <div class="post-meta d-flex justify-content-between">
+                <div class="date">{{ obj.timestamp }}</div>
+                <div class="category">
+                  {% for cat in obj.categories.all %}
+                  <a href="#">{{ cat }}</a>
+                  {% endfor %}
+                </div>
+              </div><a href="{{ post.get_absolute_url }}">
+                <h3 class="h4">{{obj.title  }}</h3></a>
+              <p class="text-muted">{{ obj.overview }}</p>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
 			</div>
-		</div>
 	</section>
-  <section class="pro-area">
-		<div class="container">
-			<div class="project-title pb-5">
-				<h1 class="text-uppercase title-h1">Latest From the Projects</h1>
+<section id="project">
+		<div class="container-fluid p-0 m-0">
+			<h1 class="ml7">
+			  <span class="text-wrapper">
+			    <span class="letters text-uppercase">Latest Projects</span>
+			  </span>
+			</h1>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+<script type="text/javascript">
+	var textWrapper = document.querySelector('.ml7 .letters');
+textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+
+anime.timeline({loop: true})
+  .add({
+    targets: '.ml7 .letter',
+    translateY: ["1.1em", 0],
+    translateX: ["0.55em", 0],
+    translateZ: 0,
+    rotateZ: [180, 0],
+    duration: 750,
+    easing: "easeOutExpo",
+    delay: (el, i) => 50 * i
+  }).add({
+    targets: '.ml7',
+    opacity: 0,
+    duration: 1000,
+    easing: "easeOutExpo",
+    delay: 1000
+  });
+</script>
+            <div class="row">
+          {% for obj in latest1 %}
+          <div class="post col-md-4">
+            <div class="post-thumbnail"><a href="{{ post.get_absolute_url }}">
+                <video width="320" height="240" controls><source src="{{ obj.project_video.url }}" type=video/mp4></video></a></div>
+            <div class="post-details">
+              <div class="post-meta d-flex justify-content-between">
+                <div class="date">{{ obj.timestamp }}</div>
+                <div class="category">
+                  {% for cat in obj.categories.all %}
+                  <a href="#">{{ cat }}</a>
+                  {% endfor %}
+                </div>
+              </div><a href="{{ post.get_absolute_url }}">
+                <h3 class="h4">{{obj.title  }}</h3></a>
+              <p class="text-muted">{{ obj.overview }}</p>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
 			</div>
-			<div class="row grid">
-				<div class="col-lg-4 col-md-6 col-sm-12 element-item popular">
-					<div class="our-project mb-4">
-						<div class="img">
-							<a class="test-popup-link">
-								<img src="{% static 'img/ard1.jpg' %}">
-							</a>
-						</div>
-						<div class="title py-4 detail">
-							<h4 class="text-uppercase">Arduino</h4>
-							<span class="text-secondary">Communication</span>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
 	</section>
-	<script type="text/javascript">
-		$(document).ready(function(){
-	let $btns = $('.pro-area .btn-grp button');
-	$btns.click(function(e){
-		$('.pro-area .btn-grp button').removeClass('active');
-		e.target.classList.add('active');
-		let selector = $(e.target).attr('data-filter');
-		$('.pro-area .grid').isotope({
-			filter : selector
-		});
-		return false;
-	});
-	$('.our-project').click(function(){
-		$(this).toggleClass('active');
-	})
-});
-	</script>
 	<section id="team" class=" mb-4">
 		<div class="container">
         <br><h2 class="ml2">Our Team</h2><br><br>
@@ -534,7 +533,7 @@ anime.timeline({loop: true})
 
             <div class="paragraph animated fadeIn delay-3s">
 
-            <h4>Sonia</h4>
+            <h4>Sonia Sethi</h4>
                 <h6>Backend Developer</h6>
 
 
@@ -623,7 +622,7 @@ anime.timeline({loop: true})
 
         <div class="dd">
 
-            <img src="{% static 'img/Srishti.jpg' %}" style="width:100px;" class="rounded-circle z-depth-2 animated bounceIn delay-2s">
+            <img src="{% static 'img/Drishti.jpg' %}" style="width:150px; height:150px;" class="rounded-circle z-depth-2 animated bounceIn delay-2s">
             </div>
 
             <div class="paragraph animated fadeIn delay-3s">
@@ -647,7 +646,7 @@ anime.timeline({loop: true})
         </div>
         </div></div>
 	</section>
-	<footer>
+	<footer style="background-image:url({% static 'img/footer.jpeg' %});">
 		<div class="container-fluid">
 			<div class="footer-sub">
 				<h3>Contact Us</h3>

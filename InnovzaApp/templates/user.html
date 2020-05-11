@@ -146,8 +146,8 @@
                                     <li class="collection-item">
                                         <div class="row">
                                             <div class="col s6">
-                                                <p class="collections-title">Preview</p>
-                                                <p class="collections-content">Password Reset</p>
+                                                <p class="collections-title">Search</p>
+                                                <a href="#"><p class="collections-content">Search Content</p></a>
                                             </div>
                                             <div class="col s3">
                                                 <span><button class="blog-btn preview"><i class="fas fa-search"></i></button></span>
@@ -161,7 +161,7 @@
                                         <div class="row">
                                             <div class="col s6">
                                                 <p class="collections-title">Account Details</p>
-                                                <p class="collections-content">{{ user.email }}</p>
+                                                <a href="{% url 'accountdetail' %}"><p class="collections-content">Your Detail</p></a>
                                             </div>
                                             <div class="col s3">
                                                 <span><button class="blog-btn account"><i class="fas fa-user"></i></button></span>
