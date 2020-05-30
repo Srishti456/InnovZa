@@ -4,8 +4,8 @@
 	<title>Home | Innovza</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'css/style.default.css' %}" id="theme-stylesheet">
 	<link rel="stylesheet" type="text/css" href="{% static 'css/swiper.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.default.css' %}" id="theme-stylesheet">
 	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
@@ -351,15 +351,17 @@ anime.timeline({loop: true})
 </section>
 <div class="container-fluid p-0 fields">
 	<h1 class="interest text-uppercase" data-aos="fade-up" data-aos-duration="1000">Our Interest Fields</h1>
-	<div class="swiper-container">
-	    <div class="swiper-wrapper">
-	      <div class="swiper-slide" style="background-image:url({% static 'img/raspberry.jpg' %});"><span>Raspberry Pi</span></div>
-	      <div class="swiper-slide" style="background-image:url({% static 'img/ardiuno.jpg' %});"><span>Arduino</span></div>
-	      <div style="background-image:url({% static 'img/robotics.jpg' %});"><span>Robotics</span></div>
-	    </div>
-	    <!-- Add Pagination -->
-	    <div class="swiper-pagination"></div>
-  	</div>
+    <div class="row" style="display:flex;">
+        <div class="col-sm-4" data-aos="zoom-in-down" data-aos-delay="4000">
+            <img src="{% static 'img/raspberry1.png' %}" style="height:400px;width:400px;" class="rounded-circle z-depth-2">
+        </div>
+        <div class="col-sm-4" data-aos="zoom-in-down" data-aos-delay="2000">
+            <img src="{% static 'img/arduino1.jpg' %}" style="height:400px;width:400px;" class="rounded-circle z-depth-2 "  >
+        </div>
+        <div class="col-sm-4" data-aos="zoom-in-down" data-aos-delay="3000">
+            <img src="{% static 'img/robotic.jpg' %}" style="height:400px;width:400px;" class="rounded-circle z-depth-2 " >
+        </div>
+    </div>
 </div>
   <script type="text/javascript" src="{% static 'js/swiper.min.js' %}"></script>
   <script>
@@ -648,12 +650,18 @@ anime.timeline({loop: true})
 		<div class="container-fluid">
 			<div class="footer-sub">
 				<h3>Contact Us</h3>
-				<form>
-					<input type="text" name="" placeholder="Name"><br>
-					<input type="email" name="" placeholder="Email"><br>
-					<textarea placeholder="Message"></textarea><br>
-					<button>Send</button>
+				<form method="post" action="{% url 'querycontact' %}" class="agile_form">
+                    {% csrf_token %}
+					<input type="text" name="name" placeholder="Name" value=""><br>
+					<input type="email" name="email" placeholder="Email" value=""><br>
+					<input type="text" name="message" placeholder="Message" value=""><br>
+					<button type="submit">Send</button>
 				</form>
+                {% if messages %}
+                    {% for message in messages %}
+                        {% if message.tags %}  <script>alert("{{ message }}")</script> {% endif %}
+                    {% endfor %}
+                {% endif %}
 				<div class="row">
 					<div class="col-md-6 menu">
 						<ul>
@@ -674,6 +682,8 @@ anime.timeline({loop: true})
 	<div class="declaimer">
 		<span>© 2020 - Innovza | All rights reserved</span>
 	</div>
+            </div>
+        </div>
 </footer>
 </body>
 </html>

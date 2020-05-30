@@ -98,13 +98,6 @@
                                         <p><i class="mdi-action-perm-identity cyan-text text-darken-2"></i> {{ user.full_name }}</p>
                                         <p><i class="mdi-action-perm-phone-msg cyan-text text-darken-2"></i>{{ user.phoneno }}</p>
                                     </div>
-                                    <div class="card-reveal">
-                                        <span class="card-title grey-text text-darken-4"> {{user.username }} <i class="mdi-navigation-close right"></i></span>
-                                        <p>Here is some more information about User</p>
-                                        <p><i class="mdi-action-perm-identity cyan-text text-darken-2"></i> {{ user.full_name }}</p>
-                                        <p><i class="mdi-action-perm-phone-msg cyan-text text-darken-2"></i> {{ user.phoneno }}</p>
-                                        <p><i class="mdi-communication-email cyan-text text-darken-2"></i> {{ user.email }}</p>
-                                    </div>
                                 </div>
                             </div>
 
@@ -146,8 +139,8 @@
                                     <li class="collection-item">
                                         <div class="row">
                                             <div class="col s6">
-                                                <p class="collections-title">Search</p>
-                                                <a href="#"><p class="collections-content">Search Content</p></a>
+                                                <p class="collections-title">Password Reset</p>
+                                                <a href="{% url 'passwordReset' %}"><p class="collections-content">Reset</p></a>
                                             </div>
                                             <div class="col s3">
                                                 <span><button class="blog-btn preview"><i class="fas fa-search"></i></button></span>
@@ -382,5 +375,6 @@ $(function() {
 
 }); // end of document ready
 </script>
+
 </body>
 </html>

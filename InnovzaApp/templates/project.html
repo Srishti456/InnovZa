@@ -34,11 +34,14 @@
                      {% for cat in project.categories.all %}
                     <a href="#">{{ cat }}</a>
                   {% endfor %}
+                    {%  if user|stringformat:"s" == project.author|stringformat:"s" %}
+                     <button type="button" class="btn btn-danger btn-sm m-1 "  data-toggle="modal" data-target="#deleteModal">Delete</button>
+                    {% endif %}
                   </div>
                 </div>
                 <div class="post-footer d-flex align-items-center flex-column flex-sm-row"><a href="#" class="author d-flex align-items-center flex-wrap">
                     <div class="avatar"><img src="{{ project.author.profile_pic.url }}" alt="..." class="img-fluid"></div>
-                    <div class="title"><span>{{ project.author.user.username }}</span></div></a>
+                    <div class="title"><span>{{ project.author }}</span></div></a>
                   <div class="d-flex align-items-center flex-wrap">
                     <div class="date"><i class="icon-clock"></i>{{ project.timestamp | timesince }}ago</div>
                     <div class="views"><i class="icon-eye"></i>{{project.view_count }}</div>
@@ -128,17 +131,28 @@
               </a>
               {% endfor %}
             </div>
-          <!-- Widget [Categories Widget]-->
-          <div class="widget categories">
-            <header>
-              <h3 class="h6">Categories</h3>
-            </header>
-            {% for cat in category_count %}
-            <div class="item d-flex justify-content-between">{{ cat.categories__title }}<span>{{ cat.categories__title__count }}</span></div>
-            {% endfor %}
-          </div>
           </div>
         </aside>
       </div>
     </div>
+  <div class="modal fade" id="deleteModal" tabindex=-1 role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true" style="top: 60px; left:60px;">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <h5 class="modal-title" id="deleteModalLabel">Delete Project?</h5>
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			          <span aria-hidden="true">&times;</span>
+			        </button>
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			        <form method="POST" action="{% url 'delete_project' project.id %}">
+                      {% csrf_token %}
+			        	<input type="submit" class="btn btn-danger" value="Delete">
+			        </form>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+
 {% endblock content %}

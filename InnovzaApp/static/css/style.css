@@ -880,7 +880,7 @@ footer .declaimer span
   .dd h4{
     font-size: 20px;
   }
-    .doremon{
+    .profile{
         width: 100%;
     }
     
@@ -891,9 +891,10 @@ footer .declaimer span
   .dd h4{
     font-size: 20px;
   }
-    .doremon{
-        width: 100%;
+    .profile{
+        width: 95%;
         right: 0px;
+        margin : 0 auto;
     }
     .btn-floating{
        

@@ -114,3 +114,8 @@ class Project(models.Model):
 
 
 
+class Contact_Us(models.Model):
+    name=models.CharField(max_length=32)
+    email=models.EmailField()
+    message=models.TextField()
+    timestamp = models.DateTimeField(auto_now_add=True)

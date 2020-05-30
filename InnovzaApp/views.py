@@ -7,7 +7,7 @@ from django.core.paginator import PageNotAnInteger, Paginator, EmptyPage
 from django.shortcuts import render, redirect, get_object_or_404,reverse
 from django.utils.safestring import mark_safe
 from django.template.defaultfilters import stringfilter
-from .forms import UserDataForm,CommentForm,ProjectCommentForm
+from .forms import UserDataForm,CommentForm,ProjectCommentForm,ContactForm
 from django.contrib.auth import authenticate, login,logout
 from django.http import HttpResponse
 from django.contrib.auth.hashers import make_password
@@ -15,7 +15,7 @@ import yagmail
 import os
 import pyotp
 from django.conf import settings
-from .models import UserInfo,Post,Category,Project,PostView,ProjectView
+from .models import UserInfo,Post,Category,Project,PostView,ProjectView,Contact_Us
 from django.db.models import Count,Q
 
 # Create your views here.
@@ -216,6 +216,12 @@ def post(request,id):
     return render(request,'post.html',context)
 
 
+def delete_post(request, id):
+    post_to_delete=Post.objects.get(id=id)
+    post_to_delete.delete()
+    messages.success(request, 'Successfull! Your post has been deleted !!')
+    return redirect('userBlog')
+
 def userProject(request):
     post_list = Project.objects.filter(author=UserInfo.objects.get(username=request.user)).all()
     paginator = Paginator(post_list, 4)
@@ -320,3 +326,31 @@ def accountdetail(request):
     user1=User.objects.get(username=request.user)
     return render(request,'accountdetail.html',{'user':user,'user1':user1,})
 
+def querycontact(request):
+    if request.method=='POST':
+        contactForm=ContactForm(request.POST)
+        if contactForm.is_valid():
+            contactForm.save()
+            messages.success(request, 'Successfully Sent The Message!')
+            return redirect('index')
+    return redirect('index')
+
+def passwordReset(request):
+    if request.method=='POST':
+        username = request.user.username
+        current_password = request.POST.get('current_password')
+        new_password = request.POST.get('new_password')
+        user = authenticate(username=username, password=current_password)
+        if user is not None:
+            u = User.objects.get(username=username)
+            u.set_password(new_password)
+            u.save()
+            messages.success(request, 'Successfull! Password is reset')
+            return redirect('signin')
+    return render(request,'changepassword.html',{})
+
+def delete_project(request, id):
+    project_to_delete=Project.objects.get(id=id)
+    project_to_delete.delete()
+    messages.success(request, 'Successfull! Your project has been deleted !!')
+    return redirect('userProject')

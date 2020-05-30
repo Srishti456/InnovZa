@@ -30,4 +30,8 @@ urlpatterns = [
     url(r'^password_reset/confirm/(?P<uidb64>[0-9A-Za-z]+)-(?P<token>.+)/$', auth_views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
     url(r'^password_reset/complete/$', auth_views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
     url(r'^search$', views.search, name='search'),
+    url(r'^querycontact$',views.querycontact,name='querycontact'),
+    url(r'^passwordReset$',views.passwordReset,name='passwordReset'),
+    path('^delete_post/<id>/',views.delete_post,name='delete_post'),
+    path('^delete_project/<id>/',views.delete_project,name='delete_project'),
 ]

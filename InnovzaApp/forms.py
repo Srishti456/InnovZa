@@ -3,7 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.http import request
 from tinymce import TinyMCE
-from .models import UserInfo,Post,Comment,ProjectComment
+from .models import UserInfo,Post,Comment,ProjectComment,Contact_Us
 
 class UserDataForm(forms.ModelForm):
     class Meta:
@@ -32,3 +32,8 @@ class ProjectCommentForm(forms.ModelForm):
     class Meta:
         model = ProjectComment
         fields = ('content',)
+
+class ContactForm(forms.ModelForm):
+    class Meta:
+        model=Contact_Us
+        fields=('name','email','message',)
