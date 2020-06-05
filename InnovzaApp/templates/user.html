@@ -104,18 +104,17 @@
                             <div class="col s12 m12 l8">
                                 <ul id="projects-collection" class="collection">
                                     <li class="collection-item avatar">
-                                        <i class="mdi-file-folder circle light-blue darken-2"></i>
-                                        <span class="collection-header">MAIN</span>
-                                        <a href="#" class="secondary-content"><i class="mdi-action-grade"></i></a>
+                                        <br>
+                                        <span class="collection-header" style="color:purple;">YOUR ACTIVITY PANNEL</span>
                                     </li>
                                     <li class="collection-item">
                                         <div class="row">
                                             <div class="col s6">
                                                 <p class="collections-title">Blog</p>
-                                                <a href="{% url 'userBlog' %}"><p class="collections-content">Current : {{ post_num }}</p></a>
+                                                <p class="collections-content">Current : {{ post_num }}</p>
                                             </div>
                                             <div class="col s3">
-                                                <span><button class="blog-btn"><i class="far fa-newspaper"></i></button></span>
+                                                <span><button class="blog-btn" onclick="window.location.href ='/post_info'" /><i class="far fa-newspaper"></i></button></span>
                                             </div>
                                             <div class="col s3">
                                                 <div id="project-line-1"><canvas width="135" height="30" style="display: inline-block; width: 135px; height: 30px; vertical-align: top;"></canvas></div>
@@ -126,10 +125,10 @@
                                         <div class="row">
                                             <div class="col s6">
                                                 <p class="collections-title">Project</p>
-                                                <a href="{% url 'userProject' %}"><p class="collections-content">Current : {{ project_num }}</p></a>
+                                                <p class="collections-content">Current : {{ project_num }}</p>
                                             </div>
                                             <div class="col s3">
-                                                <span ><button class="blog-btn project"><i class="fab fa-raspberry-pi"></i></button></span>
+                                                <span ><button class="blog-btn project" onclick="window.location.href ='/project_info'"><i class="fab fa-raspberry-pi"></i></button></span>
                                             </div>
                                             <div class="col s3">
                                                 <div id="project-line-2"><canvas width="135" height="30" style="display: inline-block; width: 135px; height: 30px; vertical-align: top;"></canvas></div>
@@ -139,11 +138,11 @@
                                     <li class="collection-item">
                                         <div class="row">
                                             <div class="col s6">
+                                                <br>
                                                 <p class="collections-title">Password Reset</p>
-                                                <a href="{% url 'passwordReset' %}"><p class="collections-content">Reset</p></a>
                                             </div>
                                             <div class="col s3">
-                                                <span><button class="blog-btn preview"><i class="fas fa-search"></i></button></span>
+                                                <span><button class="blog-btn preview" onclick="window.location.href ='{% url 'passwordReset' %}'"><i class="fas fa-search"></i></button></span>
                                             </div>
                                             <div class="col s3">
                                                 <div id="project-line-3"><canvas width="135" height="30" style="display: inline-block; width: 135px; height: 30px; vertical-align: top;"></canvas></div>
@@ -153,11 +152,11 @@
                                     <li class="collection-item">
                                         <div class="row">
                                             <div class="col s6">
+                                                <br>
                                                 <p class="collections-title">Account Details</p>
-                                                <a href="{% url 'accountdetail' %}"><p class="collections-content">Your Detail</p></a>
                                             </div>
                                             <div class="col s3">
-                                                <span><button class="blog-btn account"><i class="fas fa-user"></i></button></span>
+                                                <span><button class="blog-btn account" onclick="window.location.href ='{% url 'accountdetail' %}'"><i class="fas fa-user"></i></button></span>
                                             </div>
                                             <div class="col s3">
                                                 <div id="project-line-4"><canvas width="135" height="30" style="display: inline-block; width: 135px; height: 30px; vertical-align: top;"></canvas></div>
@@ -170,8 +169,7 @@
                         </div>
                     </div>
                 </div>
-
-        </div>
+                </section></div>
 
 <script type="text/javascript">
 
@@ -375,6 +373,11 @@ $(function() {
 
 }); // end of document ready
 </script>
+                {% if messages %}
+                    {% for message in messages %}
+                        {% if message.tags %}  <script>alert("{{ message }}")</script> {% endif %}
+                    {% endfor %}
+                {% endif %}
 
-</body>
+            </body>
 </html>

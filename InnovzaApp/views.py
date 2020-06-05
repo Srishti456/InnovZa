@@ -120,22 +120,6 @@ def userpage(request):
     else:
         return redirect('profile_photo')
 
-def userBlog(request):
-    post_list = Post.objects.filter(author=UserInfo.objects.get(username=request.user)).all()
-    paginator = Paginator(post_list, 4)
-    page_request_var = 'page'
-    page = request.GET.get(page_request_var)
-    try:
-        paginated_queryset = paginator.page(page)
-    except PageNotAnInteger:
-        paginated_queryset = paginator.page(1)
-    except EmptyPage:
-        paginated_queryset = paginator.page(paginator.num_pages)
-    context = {
-        'queryset': paginated_queryset,
-    }
-    return render(request,'userBlog.html',context)
-
 def profile_photo(request):
     if request.method=='POST':
         try:
@@ -220,23 +204,7 @@ def delete_post(request, id):
     post_to_delete=Post.objects.get(id=id)
     post_to_delete.delete()
     messages.success(request, 'Successfull! Your post has been deleted !!')
-    return redirect('userBlog')
-
-def userProject(request):
-    post_list = Project.objects.filter(author=UserInfo.objects.get(username=request.user)).all()
-    paginator = Paginator(post_list, 4)
-    page_request_var = 'page'
-    page = request.GET.get(page_request_var)
-    try:
-        paginated_queryset = paginator.page(page)
-    except PageNotAnInteger:
-        paginated_queryset = paginator.page(1)
-    except EmptyPage:
-        paginated_queryset = paginator.page(paginator.num_pages)
-    context = {
-        'queryset': paginated_queryset,
-    }
-    return render(request, 'userProject.html', context)
+    return redirect('userpage')
 
 def project_info(request):
     return render(request,'projectForm.html',{})
@@ -353,4 +321,4 @@ def delete_project(request, id):
     project_to_delete=Project.objects.get(id=id)
     project_to_delete.delete()
     messages.success(request, 'Successfull! Your project has been deleted !!')
-    return redirect('userProject')
+    return redirect('userpage')
