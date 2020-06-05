@@ -206,6 +206,7 @@ def delete_post(request, id):
     messages.success(request, 'Successfull! Your post has been deleted !!')
     return redirect('userpage')
 
+
 def project_info(request):
     return render(request,'projectForm.html',{})
 
